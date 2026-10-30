@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diario · nueva entrada</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1240px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 12px 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+    <a href="Diario.dc.html" style="min-height: 44px; padding: 0 10px; display: flex; align-items: center; color: {{t.ink}}; font-size: 16px; font-weight: 800; text-decoration: none">Cancelar</a>
+    <span style="font-size: 18px; font-weight: 800">Nueva entrada</span>
+    <span style="min-height: 44px; padding: 0 10px; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: {{t.muted}}">Hoy 10:42</span>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 20px">
+
+    <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px">
+      <legend style="padding: 0; margin-bottom: 8px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Tipo</legend>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{ tipos }}" as="k" hint-placeholder-count="7">
+          <button aria-pressed="{{ k.pressed }}" style="min-height: 68px; padding: 6px 2px; border-radius: 16px; border: {{k.border}}; background: {{k.bg}}; color: {{k.ink}}; font-family: inherit; font-size: 12.5px; font-weight: 800; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer">
+            <sc-if value="{{ k.i.observacion }}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></sc-if>
+            <sc-if value="{{ k.i.cuidado }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+            <sc-if value="{{ k.i.problema }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="7" width="8" height="12" rx="4"></rect><path d="M12 7V4.5M9 4.5 10.5 7M15 4.5 13.5 7M8 11H4.5M8 15H4.5M16 11h3.5M16 15h3.5"></path></svg></sc-if>
+            <sc-if value="{{ k.i.cosecha }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16l-1.5 9.5h-13z"></path><path d="M8 10l3-6M16 10l-3-6"></path></svg></sc-if>
+            <sc-if value="{{ k.i.preparacion }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16c0 4.5-3.5 8-8 8s-8-3.5-8-8z"></path><path d="M14 11l5-7"></path></svg></sc-if>
+            <sc-if value="{{ k.i.aprendizaje }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17h6M10 20h4"></path><path d="M12 3.5a5.5 5.5 0 0 0-3.3 9.9c.6.5 1 1.3 1 2.1V17h4.6v-1.5c0-.8.4-1.6 1-2.1A5.5 5.5 0 0 0 12 3.5z"></path></svg></sc-if>
+            <sc-if value="{{ k.i.hito }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4M6 4h11l-2 4 2 4H6"></path></svg></sc-if>
+            {{ k.label }}
+          </button>
+        </sc-for>
+      </div>
+    </fieldset>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Fotos</span>
+      <div style="display: flex; gap: 8px">
+        <div role="img" aria-label="Foto 1" style="width: 96px; height: 96px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10l-1.3 6H8.3z"></path><path d="M12 15V9"></path><path d="M12 10c0-3.2-2.2-5.2-5.5-5.2 0 3.2 2.2 5.2 5.5 5.2z"></path></svg></div>
+        <div role="img" aria-label="Foto 2" style="width: 96px; height: 96px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"></path><path d="M12 9c-4 0-6-2.5-6-6 4 0 6 2.5 6 6zM12 9c4 0 6-2.5 6-6-4 0-6 2.5-6 6z"></path></svg></div>
+        <button aria-label="Agregar foto" style="width: 96px; height: 96px; border-radius: 14px; border: 2px dashed {{t.line}}; background: transparent; color: {{t.ink}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Agregar</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="texto" style="font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">¿Qué notaste?</label>
+      <textarea id="texto" rows="4" style="box-sizing: border-box; width: 100%; padding: 12px 14px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 600; line-height: 1.45; resize: none">El tomillo y la menta del living tienen tallos largos y hojas separadas. Los dos miran hacia la ventana.</textarea>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Plantas relacionadas</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <button aria-label="Quitar Tomillo" style="min-height: 44px; padding: 0 8px 0 14px; border-radius: 22px; border: 0; background: {{t.leafSoft}}; color: {{t.leafInk}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; cursor: pointer">Tomillo<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"></path></svg></button>
+        <button aria-label="Quitar Menta" style="min-height: 44px; padding: 0 8px 0 14px; border-radius: 22px; border: 0; background: {{t.leafSoft}}; color: {{t.leafInk}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; cursor: pointer">Menta<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"></path></svg></button>
+        <button style="min-height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px dashed {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Planta</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Etiquetas</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center">
+        <dc-import name="Chip" tipo="etiqueta" label="poca luz" dark="{{ dark }}" hint-size="100px,28px"></dc-import>
+        <dc-import name="Chip" tipo="etiqueta" label="ahilado" dark="{{ dark }}" hint-size="90px,28px"></dc-import>
+        <dc-import name="Chip" tipo="etiqueta" label="para el libro" dark="{{ dark }}" hint-size="120px,28px"></dc-import>
+        <button style="min-height: 44px; padding: 0 12px; border-radius: 14px; border: 1.5px dashed {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">+ Etiqueta</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 18px; background: {{t.card}}; border: 1.5px solid {{t.line}}">
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer">
+        <span style="flex: 1; display: flex; flex-direction: column">
+          <span style="font-size: 16px; font-weight: 800">Anotar el clima</span>
+          <span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">Opcional · útil para ver patrones</span>
+        </span>
+        <input type="checkbox" role="switch" checked style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <span aria-hidden="true" style="width: 52px; height: 32px; border-radius: 16px; background: {{t.leaf}}; position: relative; flex: none"><span style="position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border-radius: 50%; background: {{t.onLeaf}}"></span></span>
+      </label>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <dc-import name="Chip" tipo="filtro" label="Soleado" selected="{{ true }}" dark="{{ dark }}" hint-size="110px,44px"></dc-import>
+        <dc-import name="Chip" tipo="filtro" label="Nublado" dark="{{ dark }}" hint-size="100px,44px"></dc-import>
+        <dc-import name="Chip" tipo="filtro" label="Lluvia" dark="{{ dark }}" hint-size="90px,44px"></dc-import>
+        <label style="display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: 22px; border: 1.5px solid {{t.line}}; font-size: 15px; font-weight: 800">
+          <input type="text" value="18" aria-label="Temperatura en grados" style="width: 32px; border: 0; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; text-align: right">°C
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <footer style="padding: 14px 16px 34px; background: {{t.bg}}; border-top: 1.5px solid {{t.line}}">
+    <a href="Diario.dc.html" style="min-height: 56px; border-radius: 28px; background: {{t.leaf}}; color: {{t.onLeaf}}; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Guardar entrada</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', phBg: '#26331F', phInk: '#A9C99C' };
+    const t = dark ? D : L;
+    const ks = [['observacion', 'Observación'], ['cuidado', 'Cuidado'], ['problema', 'Problema'], ['cosecha', 'Cosecha'], ['preparacion', 'Preparación'], ['aprendizaje', 'Aprendizaje'], ['hito', 'Hito']];
+    const sel = 'observacion';
+    return {
+      dark, t,
+      tipos: ks.map(([id, label]) => {
+        const on = id === sel;
+        const i = {}; ks.forEach(([x]) => { i[x] = x === id; });
+        return { label, i, pressed: on ? 'true' : 'false', border: on ? '2.5px solid ' + t.leaf : '1.5px solid ' + t.line, bg: on ? t.leafSoft : t.card, ink: on ? t.leafInk : t.ink };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

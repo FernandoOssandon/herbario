@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ajustes y respaldo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1520px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 16px 8px; display: flex; align-items: center; gap: 12px">
+    <a href="Hoy.dc.html" aria-label="Volver a Hoy" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 30px; font-weight: 400">Ajustes</h1>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 24px">
+
+    <section aria-labelledby="aj-casa" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="aj-casa" style="margin: 0 4px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Tu casa</h2>
+      <div style="background: {{t.card}}; border: 1.5px solid {{t.line}}; border-radius: 20px; overflow: hidden">
+        <button style="width: 100%; min-height: 64px; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border: 0; border-bottom: 1px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; text-align: left; cursor: pointer">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 800">Zona</span><span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">Zona central de Chile · hemisferio sur</span></span>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"></path></svg>
+        </button>
+        <button style="width: 100%; min-height: 64px; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border: 0; border-bottom: 1px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; text-align: left; cursor: pointer">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 800">Ubicaciones</span><span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">Cocina, Living, Balcón · con su nivel de luz</span></span>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"></path></svg>
+        </button>
+        <label style="min-height: 72px; display: flex; align-items: center; gap: 12px; padding: 8px 14px; cursor: pointer">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 800">Mascotas en casa</span><span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">Destaca aún más las plantas tóxicas para ellas</span></span>
+          <input type="checkbox" role="switch" checked style="position: absolute; opacity: 0; width: 1px; height: 1px">
+          <span aria-hidden="true" style="width: 52px; height: 32px; border-radius: 16px; background: {{t.leaf}}; position: relative; flex: none"><span style="position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border-radius: 50%; background: {{t.onLeaf}}"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <section aria-labelledby="aj-apa" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="aj-apa" style="margin: 0 4px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Tema</h2>
+      <div role="radiogroup" aria-labelledby="aj-apa" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 18px; background: {{t.neutralBg}}">
+        <button role="radio" aria-checked="true" style="min-height: 48px; border-radius: 14px; border: 0; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); cursor: pointer">Sistema</button>
+        <button role="radio" aria-checked="false" style="min-height: 48px; border-radius: 14px; border: 0; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Claro</button>
+        <button role="radio" aria-checked="false" style="min-height: 48px; border-radius: 14px; border: 0; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Oscuro</button>
+      </div>
+      <p style="margin: 0 4px; font-size: 14px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">El tamaño de letra sigue el de tu teléfono.</p>
+    </section>
+
+    <section aria-labelledby="aj-resp" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="aj-resp" style="margin: 0 4px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Respaldo</h2>
+      <div role="status" style="display: flex; gap: 12px; align-items: center; padding: 14px; border-radius: 18px; background: {{t.terraSoft}}; color: {{t.terraInk}}">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M4 6.5h16v3.5H4z"></path><path d="M5.5 10v8.5h13V10"></path><path d="M10 14h4"></path></svg>
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 800">Último respaldo hace 34 días</span><span style="font-size: 14px; font-weight: 700">Todo vive solo en este teléfono. Si se pierde, se pierde el jardín.</span></span>
+      </div>
+      <button style="min-height: 56px; border-radius: 28px; border: 0; background: {{t.leaf}}; color: {{t.onLeaf}}; font-family: inherit; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Exportar respaldo (.zip)</button>
+      <button style="min-height: 52px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7 9l5-5 5 5M5 20h14"></path></svg>Importar respaldo</button>
+      <p style="margin: 0 4px; font-size: 14px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">Incluye plantas, diario y fotos. Guárdalo en Drive, iCloud o tu computador. Importar reemplaza lo que hay ahora.</p>
+    </section>
+
+    <section aria-labelledby="aj-alm" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="aj-alm" style="margin: 0 4px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Almacenamiento</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px; background: {{t.card}}; border: 1.5px solid {{t.line}}">
+        <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 800"><span>186 MB usados</span><span style="color: {{t.muted}}; font-weight: 700">de ~1 GB disponible</span></div>
+        <div role="img" aria-label="Fotos 180 MB, datos 6 MB" style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: {{t.neutralBg}}">
+          <span style="width: 18%; background: {{t.leaf}}"></span><span style="width: 1.5%; background: {{t.terra}}"></span>
+        </div>
+        <div style="display: flex; gap: 16px; font-size: 14px; font-weight: 700; color: {{t.muted}}">
+          <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{t.leaf}}"></span>Fotos · 180 MB</span>
+          <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{t.terra}}"></span>Datos · 6 MB</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="aj-inst" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="aj-inst" style="margin: 0 4px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Instalar en iPhone</h2>
+      <ol style="margin: 0; padding: 14px; list-style: none; display: flex; flex-direction: column; gap: 12px; border-radius: 18px; background: {{t.card}}; border: 1.5px solid {{t.line}}">
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; font-weight: 800; flex: none">1</span><span style="font-size: 16px; font-weight: 700">Abre Herbario en <strong>Safari</strong></span></li>
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; font-weight: 800; flex: none">2</span><span style="font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; flex-wrap: wrap">Toca <strong>Compartir</strong><svg aria-label="ícono Compartir" role="img" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"></path><path d="M6 11H5v10h14V11h-1"></path></svg></span></li>
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; font-weight: 800; flex: none">3</span><span style="font-size: 16px; font-weight: 700">Elige <strong>Agregar a pantalla de inicio</strong></span></li>
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; font-weight: 800; flex: none">4</span><span style="font-size: 16px; font-weight: 700">Toca <strong>Agregar</strong>. Listo: se abre como una app.</span></li>
+      </ol>
+      <p style="margin: 0 4px; font-size: 14px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">En Android: menú del navegador → Instalar app.</p>
+    </section>
+
+    <p style="margin: 0 4px 12px; font-size: 14px; font-weight: 600; color: {{t.muted}}">Herbario v0.1 · Funciona sin conexión.</p>
+  </main>
+
+  <dc-import name="NavBar" activa="hoy" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1520}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', terra: '#94431F', terraSoft: '#F5DFD2', terraInk: '#7E3818', neutralBg: '#ECE7DB' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', terra: '#EE9B70', terraSoft: '#3E2618', terraInk: '#F4B490', neutralBg: '#262B22' };
+    return { dark, t: dark ? D : L };
+  }
+}
+</script>
+</body>
+</html>

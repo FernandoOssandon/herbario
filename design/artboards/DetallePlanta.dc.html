@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Detalle de planta · Tomillo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1700px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <div role="img" aria-label="Foto de portada del tomillo" style="position: relative; height: 290px; flex: none; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center">
+    <svg aria-hidden="true" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16h10l-1.3 5H8.3z"></path><path d="M10 16c0-4-1-8-3-11M12 16V3M14 16c0-4 1-8 3-11"></path><path d="M7 7l-1.5-.5M7.6 9.5 6 9.3M12 5h-1.5M12 8h1.5M12 11h-1.5M17 7l1.5-.5M16.4 9.5l1.6-.2"></path></svg>
+    <a href="Jardin.dc.html" aria-label="Volver a Mi jardín" style="position: absolute; left: 16px; top: 52px; width: 48px; height: 48px; border-radius: 50%; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"></path></svg>
+    </a>
+    <button aria-label="Más opciones" style="position: absolute; right: 16px; top: 52px; width: 48px; height: 48px; border-radius: 50%; border: 0; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); cursor: pointer">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="18.5" cy="12" r="1.8"></circle></svg>
+    </button>
+    <span style="position: absolute; left: 16px; bottom: 40px; padding: 4px 10px; border-radius: 10px; background: {{t.card}}; color: {{t.ink}}; font-size: 13px; font-weight: 800">Foto del 27 oct · 12 fotos</span>
+  </div>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; margin-top: -24px; position: relative; background: {{t.bg}}; border-radius: 28px 28px 0 0; padding: 20px 16px 0; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 32px; font-weight: 400; line-height: 1.1">Tomillo</h1>
+        <a href="FichaEspecie.dc.html" style="display: inline-flex; align-items: center; gap: 4px; min-height: 32px; font-size: 16px; font-weight: 700; color: {{t.leaf}}; text-decoration: none"><em>Thymus vulgaris</em> · Ver ficha de la especie<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"></path></svg></a>
+      </div>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
+        <dc-import name="Chip" tipo="estado" estado="observacion" dark="{{ dark }}" hint-size="140px,28px"></dc-import>
+        <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 28px; padding: 0 10px; border-radius: 10px; background: {{t.neutralBg}}; font-size: 14px; font-weight: 800"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-10.5a6 6 0 0 1 12 0C18 15.5 12 21 12 21z"></path><circle cx="12" cy="10.5" r="2"></circle></svg>Living · interior</span>
+        <dc-import name="ToxicityBadge" nivel="no-toxica" para="ambas" tam="md" dark="{{ dark }}" hint-size="220px,32px"></dc-import>
+      </div>
+    </div>
+
+    <section aria-labelledby="luz-t" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 20px; background: {{t.terraSoft}}; color: {{t.terraInk}}">
+      <div style="display: flex; gap: 10px; align-items: flex-start">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"></path></svg>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 id="luz-t" style="margin: 0; font-size: 17px; font-weight: 800; line-height: 1.3">Esta ubicación probablemente es poco luminosa para esta planta</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4">El tomillo pide varias horas de sol directo. Los tallos largos y separados (ahilado) son la pista.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button style="flex: 1; min-height: 48px; border-radius: 24px; border: 0; background: {{t.terra}}; color: {{t.onTerra}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">Mover al balcón</button>
+        <button style="flex: 1; min-height: 48px; border-radius: 24px; border: 1.5px solid {{t.terraInk}}; background: transparent; color: {{t.terraInk}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">Ya tiene buena luz</button>
+      </div>
+    </section>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <button style="min-height: 52px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Foto</button>
+      <button style="min-height: 52px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4L16 5l3 3L9 18z"></path><path d="M14 7l3 3"></path></svg>Nota</button>
+      <button style="min-height: 52px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg>Regué</button>
+    </div>
+
+    <section aria-labelledby="plan-t" style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <h2 id="plan-t" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Plan de cuidados</h2>
+        <button style="min-height: 44px; padding: 0 14px; border-radius: 22px; border: 0; background: transparent; color: {{t.leaf}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Editar</button>
+      </div>
+      <div style="background: {{t.card}}; border: 1.5px solid {{t.line}}; border-radius: 20px; overflow: hidden">
+        <sc-for list="{{ plan }}" as="c" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 14px; border-bottom: 1px solid {{t.line}}">
+            <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+              <sc-if value="{{ c.riego }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+              <sc-if value="{{ c.poda }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.5"></circle><circle cx="6" cy="17" r="2.5"></circle><path d="M8.2 8.3 20 18M8.2 15.7 20 6"></path></svg></sc-if>
+              <sc-if value="{{ c.abono }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"></path><path d="M5 19 13 11"></path></svg></sc-if>
+              <sc-if value="{{ c.rotar }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v4.5h-4.5"></path></svg></sc-if>
+            </span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 16px; font-weight: 800">{{ c.titulo }}</span>
+              <span style="font-size: 14px; font-weight: 600; line-height: 1.35; color: {{t.muted}}">{{ c.detalle }}</span>
+            </div>
+            <span style="font-size: 13px; font-weight: 800; color: {{t.muted}}; white-space: nowrap">{{ c.prox }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin: 0; font-size: 14px; font-weight: 600; color: {{t.muted}}">Generado según la especie, la ubicación y la estación. El riego siempre empieza revisando la tierra.</p>
+    </section>
+
+    <section aria-labelledby="tl-t" style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <h2 id="tl-t" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Su historia</h2>
+        <button style="min-height: 44px; padding: 0 12px; border-radius: 14px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 4px; cursor: pointer">Todo<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"></path></svg></button>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <dc-import name="TimelineItem" tipo="observacion" fecha="27 oct" titulo="Se está estirando hacia la ventana" texto="Tallos largos y hojas separadas: señal de poca luz." con-foto="{{ true }}" dark="{{ dark }}" hint-size="100%,270px"></dc-import>
+        <dc-import name="TimelineItem" tipo="cuidado" fecha="24 oct" titulo="Despunte" texto="Corté las 4 puntas más largas sobre un par de hojas." con-foto="{{ false }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+        <dc-import name="TimelineItem" tipo="hito" fecha="2 oct" titulo="Llegó a casa" texto="Comprado en la feria, en maceta de 10 cm." con-foto="{{ false }}" ultimo="{{ true }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+      </div>
+    </section>
+  </main>
+
+  <a href="RegistroRapido.dc.html" aria-label="Registro rápido" style="position: absolute; right: 18px; bottom: 108px; width: 64px; height: 64px; border-radius: 22px; background: {{t.terra}}; color: {{t.onTerra}}; box-shadow: 0 8px 20px rgba(60, 25, 10, 0.3); display: flex; align-items: center; justify-content: center">
+    <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+  </a>
+
+  <dc-import name="NavBar" activa="jardin" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', leafSoft: '#DCEAD2', leafInk: '#1F421D', terra: '#94431F', onTerra: '#FFFFFF', terraSoft: '#F5DFD2', terraInk: '#7E3818', neutralBg: '#ECE7DB', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', leafSoft: '#2A3D24', leafInk: '#C4EBB6', terra: '#EE9B70', onTerra: '#1E0E05', terraSoft: '#3E2618', terraInk: '#F4B490', neutralBg: '#262B22', phBg: '#26331F', phInk: '#A9C99C' };
+    const mk = (k, titulo, detalle, prox) => ({ riego: k === 'riego', poda: k === 'poda', abono: k === 'abono', rotar: k === 'rotar', titulo, detalle, prox });
+    return {
+      dark, t: dark ? D : L,
+      plan: [
+        mk('riego', 'Revisar riego', 'Cada 4 días · riega solo si está seca a 3 cm', 'sáb 31'),
+        mk('poda', 'Despuntar', 'Cada 2 semanas en primavera', 'hoy'),
+        mk('abono', 'Abonar', 'Cada 4 semanas · abono suave', '12 nov'),
+        mk('rotar', 'Rotar maceta', 'Cada semana · un cuarto de vuelta', 'lun 2')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

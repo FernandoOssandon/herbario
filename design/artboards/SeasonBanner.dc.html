@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SeasonBanner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<section aria-label="Estación actual" style="width: 100%; box-sizing: border-box; background: {{s.bg}}; color: {{s.fg}}; border-radius: 22px; padding: 16px 14px 16px 18px; display: flex; align-items: center; gap: 12px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif">
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+    <p style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase">{{ s.label }}</p>
+    <p style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 21px; line-height: 1.2">{{ s.title }}</p>
+    <p style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.35">{{ s.body }}</p>
+  </div>
+  <sc-if value="{{ is.primavera }}" hint-placeholder-val="{{ true }}">
+    <svg aria-hidden="true" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M14 36h36l-4 22H18z"></path><path d="M12 36h40"></path><path d="M32 36V20"></path><path d="M32 22c0-8-6-13-14-13 0 8 6 13 14 13z"></path><path d="M32 27c0-6 5-10 12-10 0 6-5 10-12 10z"></path></svg>
+  </sc-if>
+  <sc-if value="{{ is.verano }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="40" cy="20" r="8"></circle><path d="M40 4v4M40 32v4M24 20h4M52 20h4M28.7 8.7l2.8 2.8M48.5 28.5l2.8 2.8M28.7 31.3l2.8-2.8M48.5 11.5l2.8-2.8"></path><path d="M10 42h28l-3 18H13z"></path><path d="M8 42h32"></path><path d="M24 42v-8c0-3-2-5-5-5"></path></svg>
+  </sc-if>
+  <sc-if value="{{ is.otono }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 8h24"></path><path d="M26 8v10M32 8v14M38 8v10"></path><path d="M26 18c-3 2-4 6-2 9M32 22c-3 2-3 6 0 9M38 18c3 2 4 6 2 9"></path><path d="M14 54c0-10 7-16 18-16-1 10-7 16-18 16z"></path><path d="M14 54l9-9"></path><path d="M44 50l8 8M48 46c3 0 6 3 6 6"></path></svg>
+  </sc-if>
+  <sc-if value="{{ is.invierno }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><rect x="8" y="6" width="30" height="26" rx="2"></rect><path d="M23 6v26M8 19h30"></path><path d="M16 46h32l-3 14H19z"></path><path d="M14 46h36"></path><path d="M32 46V36"></path><path d="M32 38c0-5 4-8 9-8 0 5-4 8-9 8z"></path></svg>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estacion":{"editor":"enum","options":["primavera","verano","otono","invierno"],"default":"primavera"},"dark":{"editor":"boolean","default":false},"$preview":{"width":358,"height":140}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const est = this.props.estacion ?? 'primavera';
+    const copy = {
+      primavera: { label: 'Primavera', title: 'Buen momento para trasplantar', body: 'Las raíces se recuperan rápido con más horas de luz.' },
+      verano: { label: 'Verano', title: 'Riega temprano o al atardecer', body: 'En el balcón la tierra se seca en horas: revísala dos veces al día.' },
+      otono: { label: 'Otoño', title: 'Cosecha y seca tus hierbas', body: 'Corta antes de que florezcan y cuelga manojos a la sombra.' },
+      invierno: { label: 'Invierno', title: 'Menos agua, más luz', body: 'Crecen lento: espacia el riego y acércalas a la ventana.' }
+    };
+    const colL = { primavera: ['#2C5A2A', '#FFFFFF'], verano: ['#94431F', '#FFFFFF'], otono: ['#5E4423', '#FFF8EC'], invierno: ['#2E4A52', '#F2F7F8'] };
+    const colD = { primavera: ['#A3D693', '#0E1A0B'], verano: ['#EE9B70', '#1E0E05'], otono: ['#D9B98A', '#1E1408'], invierno: ['#9CC5CF', '#0B1B1F'] };
+    const c = (dark ? colD : colL)[est] || colL.primavera;
+    const k = copy[est] || copy.primavera;
+    return {
+      s: { bg: c[0], fg: c[1], label: k.label, title: k.title, body: k.body },
+      is: { primavera: est === 'primavera', verano: est === 'verano', otono: est === 'otono', invierno: est === 'invierno' }
+    };
+  }
+}
+</script>
+</body>
+</html>

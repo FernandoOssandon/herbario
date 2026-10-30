@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PhotoPicker</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; color: {{t.ink}}">
+  <sc-if value="{{ vacio }}" hint-placeholder-val="{{ true }}">
+    <div style="box-sizing: border-box; height: 210px; border-radius: 22px; border: 2px dashed {{t.line}}; background: {{t.card}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: {{t.muted}}">
+      <svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+      <span style="font-size: 15px; font-weight: 700; max-width: 240px; text-align: center; line-height: 1.4">Encuadra la planta completa, con su maceta</span>
+    </div>
+    <button style="min-height: 56px; border-radius: 28px; border: 0; background: {{t.leaf}}; color: {{t.onLeaf}}; font-family: inherit; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+      Tomar foto
+    </button>
+    <button style="min-height: 48px; border-radius: 24px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Elegir de la galería</button>
+  </sc-if>
+  <sc-if value="{{ conFoto }}" hint-placeholder-val="{{ false }}">
+    <div role="img" aria-label="Foto seleccionada" style="position: relative; box-sizing: border-box; height: 230px; border-radius: 22px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center">
+      <svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10l-1.3 6H8.3z"></path><path d="M12 15V9"></path><path d="M12 10c0-3.2-2.2-5.2-5.5-5.2 0 3.2 2.2 5.2 5.5 5.2z"></path><path d="M12 12c0-2.6 1.9-4.2 4.6-4.2 0 2.6-1.9 4.2-4.6 4.2z"></path></svg>
+      <span style="position: absolute; left: 12px; bottom: 12px; padding: 4px 10px; border-radius: 10px; background: {{t.card}}; color: {{t.ink}}; font-size: 13px; font-weight: 800">Hoy, 10:42</span>
+    </div>
+    <div style="display: flex; gap: 10px">
+      <button style="flex: 1; min-height: 48px; border-radius: 24px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Cambiar</button>
+      <button style="flex: 1; min-height: 48px; border-radius: 24px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Otra foto</button>
+    </div>
+  </sc-if>
+  <p style="margin: 0; font-size: 13px; font-weight: 700; color: {{t.muted}}; text-align: center">Las fotos se guardan solo en este teléfono.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","options":["vacio","foto"],"default":"vacio"},"dark":{"editor":"boolean","default":false},"$preview":{"width":358,"height":320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const estado = this.props.estado ?? 'vacio';
+    const t = dark
+      ? { card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', phBg: '#26331F', phInk: '#A9C99C' }
+      : { card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    return { t, vacio: estado !== 'foto', conFoto: estado === 'foto' };
+  }
+}
+</script>
+</body>
+</html>

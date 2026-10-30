@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nueva planta · paso 2 especie</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 16px 8px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="NuevaFoto.dc.html" aria-label="Volver al paso anterior" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"></path></svg>
+      </a>
+      <div style="flex: 1; display: flex; flex-direction: column">
+        <span style="font-size: 14px; font-weight: 800; color: {{t.muted}}">Nueva planta · paso 2 de 3</span>
+        <span style="font-size: 18px; font-weight: 800">Especie</span>
+      </div>
+    </div>
+    <div role="progressbar" aria-label="Progreso" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <span style="height: 6px; border-radius: 3px; background: {{t.leaf}}"></span>
+      <span style="height: 6px; border-radius: 3px; background: {{t.leaf}}"></span>
+      <span style="height: 6px; border-radius: 3px; background: {{t.line}}"></span>
+    </div>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 12px">
+    <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 28px; font-weight: 400; line-height: 1.15">¿Qué planta es?</h1>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="buscar" style="font-size: 14px; font-weight: 800; color: {{t.muted}}">Busca por nombre común o científico</label>
+      <div style="display: flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 14px; box-sizing: border-box; border-radius: 16px; border: 2px solid {{t.leaf}}; background: {{t.card}}">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{t.muted}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="m15 15 5 5"></path></svg>
+        <input id="buscar" type="search" value="mentha" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 17px; font-weight: 700">
+      </div>
+    </div>
+
+    <div role="radiogroup" aria-label="Resultados del catálogo" style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">3 en el catálogo</span>
+      <sc-for list="{{ resultados }}" as="r" hint-placeholder-count="3">
+        <label style="display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 10px 12px; box-sizing: border-box; border-radius: 18px; border: {{r.border}}; background: {{r.bg}}; cursor: pointer">
+          <input type="radio" name="especie" value="{{ r.id }}" checked="{{ r.sel }}" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+          <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"></path><path d="M12 9c-4 0-6-2.5-6-6 4 0 6 2.5 6 6zM12 9c4 0 6-2.5 6-6-4 0-6 2.5-6 6z"></path><path d="M12 15c-3 0-5-2-5-4.5 3 0 5 2 5 4.5zM12 15c3 0 5-2 5-4.5-3 0-5 2-5 4.5z"></path></svg>
+          </span>
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+            <span style="font-size: 17px; font-weight: 800">{{ r.comun }}</span>
+            <span style="font-size: 14px; font-weight: 600; font-style: italic; color: {{t.muted}}">{{ r.cientifico }}</span>
+            <dc-import name="ToxicityBadge" nivel="{{ r.tox }}" para="{{ r.para }}" tam="sm" dark="{{ dark }}" hint-size="100px,24px"></dc-import>
+          </span>
+          <sc-if value="{{ r.sel }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leaf}}; color: {{t.onLeaf}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7.5"></path></svg></span>
+          </sc-if>
+        </label>
+      </sc-for>
+    </div>
+
+    <button style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; border-radius: 18px; border: 2px dashed {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; text-align: left; cursor: pointer">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+      <span style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 16px; font-weight: 800">¿No está? Crear especie a confirmar</span>
+        <span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">Se guarda con toxicidad «desconocida» hasta que la completes.</span>
+      </span>
+    </button>
+  </main>
+
+  <footer style="padding: 12px 16px 34px; display: flex; gap: 10px; background: {{t.bg}}">
+    <a href="NuevaUbicacion.dc.html" style="flex: 1; min-height: 56px; border-radius: 28px; background: {{t.leaf}}; color: {{t.onLeaf}}; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none">Siguiente: ubicación<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"></path></svg></a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', phBg: '#26331F', phInk: '#A9C99C' };
+    const t = dark ? D : L;
+    const rs = [
+      { id: 'mentha-spicata', comun: 'Menta', cientifico: 'Mentha spicata', tox: 'precaucion', para: '', sel: false },
+      { id: 'mentha-piperita', comun: 'Menta piperita', cientifico: 'Mentha × piperita', tox: 'precaucion', para: '', sel: false },
+      { id: 'mentha-pulegium', comun: 'Poleo', cientifico: 'Mentha pulegium', tox: 'toxica', para: '', sel: true }
+    ];
+    return {
+      dark, t,
+      resultados: rs.map((r) => ({ ...r, border: r.sel ? '2.5px solid ' + t.leaf : '1.5px solid ' + t.line, bg: r.sel ? t.leafSoft : t.card }))
+    };
+  }
+}
+</script>
+</body>
+</html>

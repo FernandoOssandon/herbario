@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CareTaskCard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: {{pad}}; background: {{t.card}}; border: {{border}}; border-radius: 20px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; color: {{t.ink}}">
+  <div aria-hidden="true" style="width: {{thumb}}px; height: {{thumb}}px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"></path><path d="M12 11c-3-1-5-4-4-8 3 1 5 4 4 8z"></path><path d="M12 15c2-2 5-2.5 7-1-1.5 2.5-4.5 3-7 1z"></path></svg>
+  </div>
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+    <span style="font-size: 18px; font-weight: 800; line-height: 1.2; color: {{nameColor}}">{{ planta }}</span>
+    <span style="display: flex; align-items: center; gap: 5px; font-size: 15px; font-weight: 700; color: {{t.muted}}; text-decoration: {{strike}}">
+      <sc-if value="{{ ic.riego }}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+      <sc-if value="{{ ic.poda }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.5"></circle><circle cx="6" cy="17" r="2.5"></circle><path d="M8.2 8.3 20 18M8.2 15.7 20 6"></path></svg></sc-if>
+      <sc-if value="{{ ic.abono }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"></path><path d="M5 19 13 11"></path></svg></sc-if>
+      <sc-if value="{{ ic.plagas }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="m15 15 5 5"></path></svg></sc-if>
+      <sc-if value="{{ ic.cosecha }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16l-1.5 9.5h-13z"></path><path d="M8 10l3-6M16 10l-3-6"></path><path d="M9 13.5v3M12 13.5v3M15 13.5v3"></path></svg></sc-if>
+      <sc-if value="{{ ic.rotar }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v4.5h-4.5"></path></svg></sc-if>
+      <sc-if value="{{ ic.polinizar }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="1.6"></circle><circle cx="12" cy="4.8" r="2"></circle><circle cx="15.6" cy="7.4" r="2"></circle><circle cx="14.2" cy="11.6" r="2"></circle><circle cx="9.8" cy="11.6" r="2"></circle><circle cx="8.4" cy="7.4" r="2"></circle><path d="M12 13.6V21"></path></svg></sc-if>
+      {{ tarea }}
+    </span>
+    <sc-if value="{{ showChips }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; gap: 6px; flex-wrap: wrap">
+        <sc-if value="{{ isLate }}" hint-placeholder-val="{{ true }}">
+          <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; background: {{t.amberBg}}; color: {{t.amberInk}}; font-size: 13px; font-weight: 800"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4.5l3 2"></path></svg>{{ meta }}</span>
+        </sc-if>
+        <sc-if value="{{ toxica }}" hint-placeholder-val="{{ true }}">
+          <span style="display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 10px; background: {{t.redBg}}; color: {{t.redInk}}; font-size: 13px; font-weight: 800"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19.5H3z"></path><path d="M12 10v4M12 17v.5"></path></svg>Tóxica</span>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{ isNext }}" hint-placeholder-val="{{ false }}">
+    <span style="font-size: 15px; font-weight: 800; color: {{t.muted}}; padding-right: 6px; white-space: nowrap">{{ meta }}</span>
+  </sc-if>
+  <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+    <span style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex: none; padding-right: 2px">
+      <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7.5"></path></svg>
+      </span>
+      <span style="font-size: 12px; font-weight: 800; color: {{t.muted}}">{{ meta }}</span>
+    </span>
+  </sc-if>
+  <sc-if value="{{ isWaterAction }}" hint-placeholder-val="{{ true }}">
+    <button aria-label="{{ actionLabel }}" onClick="{{ act }}" style="width: 56px; height: 56px; border-radius: 50%; border: 0; background: {{t.leaf}}; color: {{t.onLeaf}}; display: flex; align-items: center; justify-content: center; padding: 0; flex: none; cursor: pointer">
+      <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg>
+    </button>
+  </sc-if>
+  <sc-if value="{{ isCheckAction }}" hint-placeholder-val="{{ false }}">
+    <button aria-label="{{ actionLabel }}" onClick="{{ act }}" style="width: 56px; height: 56px; border-radius: 50%; border: 2px solid {{t.leaf}}; background: transparent; color: {{t.leaf}}; display: flex; align-items: center; justify-content: center; padding: 0; flex: none; cursor: pointer">
+      <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7.5"></path></svg>
+    </button>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"planta":{"editor":"text","default":"Cuna de Moisés"},"tarea":{"editor":"text","default":"Revisar riego"},"tipo":{"editor":"enum","options":["riego","poda","abono","plagas","cosecha","rotar","polinizar"],"default":"riego"},"estado":{"editor":"enum","options":["pendiente","atrasada","hecha","proxima"],"default":"atrasada"},"meta":{"editor":"text","default":"Atrasada 1 día"},"toxica":{"editor":"boolean","default":true},"onAction":{"editor":null},"dark":{"editor":"boolean","default":false},"$preview":{"width":358,"height":100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const t = dark
+      ? { card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', amberInk: '#FFC85C', amberBg: '#3B2B08', amberLine: '#E0A21E', redInk: '#FFA095', redBg: '#42160F', phBg: '#26331F', phInk: '#A9C99C' }
+      : { card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', amberInk: '#6E4600', amberBg: '#FCE9BE', amberLine: '#B07A06', redInk: '#9E1A14', redBg: '#FADCD7', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const tipo = this.props.tipo ?? 'riego';
+    const estado = this.props.estado ?? 'atrasada';
+    const planta = this.props.planta ?? 'Cuna de Moisés';
+    const tarea = this.props.tarea ?? 'Revisar riego';
+    const toxica = this.props.toxica ?? true;
+    const isLate = estado === 'atrasada';
+    const isDone = estado === 'hecha';
+    const isNext = estado === 'proxima';
+    const actionable = !isDone && !isNext;
+    const ic = { riego: false, poda: false, abono: false, plagas: false, cosecha: false, rotar: false, polinizar: false };
+    ic[tipo] = true;
+    return {
+      t, ic, planta, tarea, toxica, isLate, isDone, isNext,
+      meta: this.props.meta ?? 'Atrasada 1 día',
+      showChips: isLate || toxica,
+      isWaterAction: actionable && tipo === 'riego',
+      isCheckAction: actionable && tipo !== 'riego',
+      actionLabel: (tipo === 'riego' ? 'Revisar riego de ' : 'Marcar hecho: ' + tarea.toLowerCase() + ', ') + planta,
+      border: isLate ? '2px solid ' + t.amberLine : '1.5px solid ' + t.line,
+      pad: isNext ? '8px 10px' : '10px',
+      thumb: isNext ? 44 : 60,
+      nameColor: isDone ? t.muted : t.ink,
+      strike: isDone ? 'line-through' : 'none',
+      act: () => { if (this.props.onAction) this.props.onAction(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

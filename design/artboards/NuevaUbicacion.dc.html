@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nueva planta · paso 3 ubicación</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 16px 8px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="NuevaEspecie.dc.html" aria-label="Volver al paso anterior" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"></path></svg>
+      </a>
+      <div style="flex: 1; display: flex; flex-direction: column">
+        <span style="font-size: 14px; font-weight: 800; color: {{t.muted}}">Nueva planta · paso 3 de 3</span>
+        <span style="font-size: 18px; font-weight: 800">Ubicación</span>
+      </div>
+    </div>
+    <div role="progressbar" aria-label="Progreso" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <span style="height: 6px; border-radius: 3px; background: {{t.leaf}}"></span>
+      <span style="height: 6px; border-radius: 3px; background: {{t.leaf}}"></span>
+      <span style="height: 6px; border-radius: 3px; background: {{t.leaf}}"></span>
+    </div>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 28px; font-weight: 400; line-height: 1.15">¿Dónde va a vivir?</h1>
+
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="apodo" style="font-size: 14px; font-weight: 800; color: {{t.muted}}">Apodo (opcional)</label>
+      <input id="apodo" type="text" value="Poleo del balcón" style="min-height: 52px; padding: 0 14px; box-sizing: border-box; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 17px; font-weight: 700">
+    </div>
+
+    <div role="radiogroup" aria-label="Ubicación" style="display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{ lugares }}" as="l" hint-placeholder-count="3">
+        <label style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 10px 14px; box-sizing: border-box; border-radius: 18px; border: {{l.border}}; background: {{l.bg}}; cursor: pointer">
+          <input type="radio" name="ubicacion" value="{{ l.id }}" checked="{{ l.sel }}" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+          <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 50%; background: {{t.neutralBg}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-10.5a6 6 0 0 1 12 0C18 15.5 12 21 12 21z"></path><circle cx="12" cy="10.5" r="2"></circle></svg>
+          </span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 17px; font-weight: 800">{{ l.nombre }}</span>
+            <span style="font-size: 14px; font-weight: 700; color: {{t.muted}}">{{ l.detalle }}</span>
+          </span>
+          <sc-if value="{{ l.sel }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 50%; background: {{t.leaf}}; color: {{t.onLeaf}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7.5"></path></svg></span>
+          </sc-if>
+        </label>
+      </sc-for>
+      <button style="align-self: flex-start; min-height: 44px; padding: 0 6px; border: 0; background: transparent; color: {{t.leaf}}; font-family: inherit; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 6px; cursor: pointer"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Nueva ubicación</button>
+    </div>
+
+    <div role="status" style="display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 16px; background: {{t.leafSoft}}; color: {{t.leafInk}}">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"></path></svg>
+      <p style="margin: 0; font-size: 15px; font-weight: 700; line-height: 1.4">Buena elección: el poleo quiere sol y tierra que no se seque del todo.</p>
+    </div>
+  </main>
+
+  <footer style="padding: 12px 16px 34px; display: flex; gap: 10px; background: {{t.bg}}">
+    <a href="NuevaResumen.dc.html" style="flex: 1; min-height: 56px; border-radius: 28px; background: {{t.leaf}}; color: {{t.onLeaf}}; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Crear planta</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', neutralBg: '#ECE7DB' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', neutralBg: '#262B22' };
+    const t = dark ? D : L;
+    const ls = [
+      { id: 'cocina', nombre: 'Cocina', detalle: 'Interior · luz de ventana, media', sel: false },
+      { id: 'living', nombre: 'Living', detalle: 'Interior · luz baja', sel: false },
+      { id: 'balcon', nombre: 'Balcón', detalle: 'Exterior · sol directo en la mañana', sel: true }
+    ];
+    return {
+      dark, t,
+      lugares: ls.map((l) => ({ ...l, border: l.sel ? '2.5px solid ' + t.leaf : '1.5px solid ' + t.line, bg: l.sel ? t.leafSoft : t.card }))
+    };
+  }
+}
+</script>
+</body>
+</html>

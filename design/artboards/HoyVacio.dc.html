@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Hoy · estado vacío</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <div style="display: flex; flex-direction: column">
+      <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.1">Hoy</h1>
+      <p style="margin: 0; font-size: 16px; font-weight: 700; color: {{t.muted}}">Jueves 29 de octubre</p>
+    </div>
+    <a href="Ajustes.dc.html" aria-label="Ajustes y perfil" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"></path></svg>
+    </a>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 14px">
+    <dc-import name="SeasonBanner" estacion="primavera" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+    <dc-import name="EmptyState" variante="hoy" dark="{{ dark }}" hint-size="100%,380px"></dc-import>
+    <button style="min-height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 16px; background: transparent; border: 1.5px dashed {{t.line}}; border-radius: 18px; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-align: left">
+      <span style="flex: 1">Próximos 3 días</span>
+      <span style="font-size: 15px; font-weight: 700; color: {{t.muted}}">1 tarea</span>
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"></path></svg>
+    </button>
+  </main>
+
+  <a href="RegistroRapido.dc.html" aria-label="Registro rápido" style="position: absolute; right: 18px; bottom: 108px; width: 64px; height: 64px; border-radius: 22px; background: {{t.terra}}; color: {{t.onTerra}}; box-shadow: 0 8px 20px rgba(60, 25, 10, 0.3); display: flex; align-items: center; justify-content: center">
+    <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+  </a>
+
+  <dc-import name="NavBar" activa="hoy" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', terra: '#94431F', onTerra: '#FFFFFF' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', terra: '#EE9B70', onTerra: '#1E0E05' };
+    return { dark, t: dark ? D : L };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "_aviso": "Datos de demostración SOLO para desarrollo, pruebas y capturas. Reproducen el estado del diseño al martes 27 de octubre de 2026. Cargar con /dev/seed; nunca en producción salvo que la usuaria lo pida desde Ajustes.",
+  "today": "2026-10-27",
+  "settings": { "zone": "chile-central", "hasPets": true, "theme": "system", "lastBackupAt": "2026-09-23T20:00:00-03:00", "firstUseAt": "2026-09-01T10:00:00-03:00" },
+  "plants": [
+    { "id": "p-cuna", "nickname": "Cuna de Moisés", "speciesId": "spathiphyllum-wallisii", "locationId": "loc-living", "status": "recuperacion" },
+    { "id": "p-tomillo", "nickname": "Tomillo", "speciesId": "thymus-vulgaris", "locationId": "loc-living", "status": "observacion", "acquiredAt": "2026-10-02" },
+    { "id": "p-menta", "nickname": "Menta", "speciesId": "mentha-spicata", "locationId": "loc-living", "status": "observacion" },
+    { "id": "p-tomate", "nickname": "Tomate cherry", "speciesId": "solanum-lycopersicum-cerasiforme", "locationId": "loc-cocina", "status": "activa" },
+    { "id": "p-albahaca", "nickname": "Albahaca", "speciesId": "ocimum-basilicum", "locationId": "loc-cocina", "status": "plantin" },
+    { "id": "p-perejil", "nickname": "Perejil", "speciesId": "petroselinum-crispum", "locationId": "loc-balcon", "status": "activa" },
+    { "id": "p-alocasia", "nickname": "Alocasia", "speciesId": "alocasia-sp", "locationId": "loc-living", "status": "activa" },
+    { "id": "p-sansevieria", "nickname": "Sansevieria", "speciesId": "dracaena-trifasciata", "locationId": "loc-balcon", "status": "activa" }
+  ],
+  "nextDueOverrides": [
+    { "plantId": "p-cuna", "type": "riego", "nextDueAt": "2026-10-26" },
+    { "plantId": "p-tomillo", "type": "poda", "nextDueAt": "2026-10-27" },
+    { "plantId": "p-tomate", "type": "polinizar", "nextDueAt": "2026-10-27" },
+    { "plantId": "p-menta", "type": "riego", "nextDueAt": "2026-10-27" },
+    { "plantId": "p-perejil", "type": "abono", "nextDueAt": "2026-10-28" },
+    { "plantId": "p-alocasia", "type": "rotar", "nextDueAt": "2026-10-29" },
+    { "plantId": "p-albahaca", "type": "poda", "nextDueAt": "2026-10-31" },
+    { "plantId": "p-sansevieria", "type": "riego", "nextDueAt": "2026-11-01" }
+  ],
+  "journal": [
+    { "type": "observacion", "plantIds": ["p-tomillo"], "text": "Se está estirando hacia la ventana. Tallos largos y hojas separadas: señal de poca luz.", "tags": ["poca luz"], "at": "2026-10-27T10:42:00-03:00", "withPhoto": true },
+    { "type": "cuidado", "plantIds": ["p-cuna"], "text": "Tierra seca a 3 cm. Regué hasta que escurrió por abajo.", "tags": [], "weather": { "condition": "soleado", "tempC": 18 }, "at": "2026-10-21T09:15:00-03:00" },
+    { "type": "aprendizaje", "plantIds": ["p-tomillo", "p-menta"], "text": "Lo ahilado no se recupera: hay que despuntar y darle más luz para que lo nuevo crezca compacto.", "tags": ["luz", "para el libro"], "at": "2026-10-26T21:30:00-03:00" },
+    { "type": "cuidado", "plantIds": ["p-tomillo"], "text": "Despunte: corté las 4 puntas más largas sobre un par de hojas.", "tags": [], "at": "2026-10-24T11:00:00-03:00" },
+    { "type": "hito", "plantIds": ["p-alocasia"], "text": "Asoma una hoja nueva, todavía enrollada.", "tags": [], "at": "2026-10-24T12:05:00-03:00", "withPhoto": true },
+    { "type": "hito", "plantIds": ["p-tomillo"], "text": "Llegó a casa. Comprado en la feria, en maceta de 10 cm.", "tags": [], "at": "2026-10-02T17:00:00-03:00" }
+  ]
+}

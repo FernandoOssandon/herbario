@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi jardín</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1420px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 18px 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <div style="display: flex; flex-direction: column">
+      <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.1">Mi jardín</h1>
+      <p style="margin: 0; font-size: 16px; font-weight: 700; color: {{t.muted}}">8 plantas · 3 ubicaciones</p>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button aria-label="Buscar planta" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="m15 15 5 5"></path></svg>
+      </button>
+      <a href="NuevaFoto.dc.html" style="min-height: 48px; padding: 0 16px; box-sizing: border-box; border-radius: 24px; background: {{t.leaf}}; color: {{t.onLeaf}}; display: flex; align-items: center; gap: 6px; text-decoration: none; font-size: 16px; font-weight: 800">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Planta
+      </a>
+    </div>
+  </header>
+
+  <div style="padding: 4px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <div role="group" aria-label="Ubicación" style="display: flex; gap: 8px; overflow: hidden">
+      <dc-import name="Chip" tipo="filtro" label="Todas · 8" selected="{{ true }}" dark="{{ dark }}" hint-size="110px,44px"></dc-import>
+      <dc-import name="Chip" tipo="filtro" label="Cocina · 2" dark="{{ dark }}" hint-size="110px,44px"></dc-import>
+      <dc-import name="Chip" tipo="filtro" label="Living · 4" dark="{{ dark }}" hint-size="100px,44px"></dc-import>
+      <dc-import name="Chip" tipo="filtro" label="Balcón · 2" dark="{{ dark }}" hint-size="110px,44px"></dc-import>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 14px; border-radius: 14px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">Tipo: todas<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"></path></svg></button>
+      <button style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 14px; border-radius: 14px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">Estado: todos<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"></path></svg></button>
+    </div>
+  </div>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{ plantas }}" as="p" hint-placeholder-count="8">
+      <a href="DetallePlanta.dc.html" style="display: flex; gap: 12px; padding: 10px; background: {{t.card}}; border: 1.5px solid {{t.line}}; border-radius: 20px; text-decoration: none; color: {{t.ink}}">
+        <div aria-hidden="true" style="width: 88px; height: 104px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10l-1.3 6H8.3z"></path><path d="M12 15V9"></path><path d="M12 10c0-3.2-2.2-5.2-5.5-5.2 0 3.2 2.2 5.2 5.5 5.2z"></path><path d="M12 12c0-2.6 1.9-4.2 4.6-4.2 0 2.6-1.9 4.2-4.6 4.2z"></path></svg>
+        </div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+          <div style="display: flex; flex-direction: column">
+            <span style="font-size: 18px; font-weight: 800; line-height: 1.2">{{ p.apodo }}</span>
+            <span style="font-size: 14px; font-weight: 600; font-style: italic; color: {{t.muted}}">{{ p.especie }}</span>
+          </div>
+          <span style="display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; color: {{t.muted}}">
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-10.5a6 6 0 0 1 12 0C18 15.5 12 21 12 21z"></path><circle cx="12" cy="10.5" r="2"></circle></svg>
+            {{ p.ubicacion }} · <span style="color: {{p.taskColor}}">{{ p.tarea }}</span>
+          </span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap">
+            <dc-import name="Chip" tipo="estado" estado="{{ p.estado }}" dark="{{ dark }}" hint-size="110px,28px"></dc-import>
+            <dc-import name="ToxicityBadge" nivel="{{ p.tox }}" para="{{ p.para }}" tam="sm" dark="{{ dark }}" hint-size="90px,24px"></dc-import>
+          </div>
+        </div>
+      </a>
+    </sc-for>
+  </main>
+
+  <a href="RegistroRapido.dc.html" aria-label="Registro rápido" style="position: absolute; right: 18px; bottom: 108px; width: 64px; height: 64px; border-radius: 22px; background: {{t.terra}}; color: {{t.onTerra}}; box-shadow: 0 8px 20px rgba(60, 25, 10, 0.3); display: flex; align-items: center; justify-content: center">
+    <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+  </a>
+
+  <dc-import name="NavBar" activa="jardin" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1420}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', terra: '#94431F', onTerra: '#FFFFFF', amberInk: '#6E4600', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', terra: '#EE9B70', onTerra: '#1E0E05', amberInk: '#FFC85C', phBg: '#26331F', phInk: '#A9C99C' };
+    const t = dark ? D : L;
+    const base = [
+      { apodo: 'Cuna de Moisés', especie: 'Spathiphyllum wallisii', ubicacion: 'Living', tarea: 'Riego atrasado 1 día', late: true, estado: 'recuperacion', tox: 'toxica', para: '' },
+      { apodo: 'Tomillo', especie: 'Thymus vulgaris', ubicacion: 'Living', tarea: 'Despuntar hoy', estado: 'observacion', tox: 'no-toxica', para: '' },
+      { apodo: 'Menta', especie: 'Mentha spicata', ubicacion: 'Living', tarea: 'Revisar riego hoy', estado: 'observacion', tox: 'precaucion', para: '' },
+      { apodo: 'Tomate cherry', especie: 'Solanum lycopersicum', ubicacion: 'Cocina', tarea: 'Polinizar hoy', estado: 'activa', tox: 'precaucion', para: '' },
+      { apodo: 'Albahaca', especie: 'Ocimum basilicum', ubicacion: 'Cocina', tarea: 'Despuntar sáb 31', estado: 'plantin', tox: 'no-toxica', para: '' },
+      { apodo: 'Perejil', especie: 'Petroselinum crispum', ubicacion: 'Balcón', tarea: 'Abonar mié 28', estado: 'activa', tox: 'precaucion', para: '' },
+      { apodo: 'Alocasia', especie: 'Alocasia sp.', ubicacion: 'Living', tarea: 'Rotar jue 29', estado: 'activa', tox: 'toxica', para: '' },
+      { apodo: 'Sansevieria', especie: 'Dracaena trifasciata', ubicacion: 'Balcón', tarea: 'Revisar riego dom 1', estado: 'activa', tox: 'toxica', para: '' }
+    ];
+    return {
+      dark, t,
+      plantas: base.map((p) => ({ ...p, taskColor: p.late ? t.amberInk : t.muted }))
+    };
+  }
+}
+</script>
+</body>
+</html>

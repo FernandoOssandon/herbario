@@ -1,0 +1,57 @@
+schema: spec-driven
+
+# Project context (optional)
+# Add only constraints that should guide OpenSpec artifacts and workflows.
+# Include constraints an agent cannot infer by reading the code.
+# Keep general project documentation and discoverable codebase facts out.
+# Example:
+#   context: |
+#     Designs and tasks must cover Windows, macOS, and Linux
+#     Write all artifacts in Spanish
+context: |
+  Lee HANDOFF.md completo antes de crear o implementar cualquier change: es la
+  especificación de producto (modelo de datos, pantallas, criterios de
+  aceptación). CLAUDE.md tiene las reglas de arquitectura y estilo para el
+  agente. Ninguno de los dos vive bajo openspec/, pero son la fuente de verdad.
+
+  Los changes siguen los hitos de HANDOFF.md §12, uno por hito y en orden: M0
+  base, M1 componentes, M2 datos, M3 jardín, M4 hoy, M5 registrar, M6 nueva
+  planta, M7 ajustes y PWA, M8 pulido. No adelantar pantallas de un hito
+  posterior ni fusionar hitos salvo que el usuario lo pida explícitamente.
+
+  Restricciones no negociables (HANDOFF.md §1.3, CLAUDE.md): sin backend, sin
+  red, sin analytics — todo vive en el teléfono vía Dexie/IndexedDB. Estaciones
+  del hemisferio sur siempre (nunca lógica de estación del hemisferio norte).
+  Rojo y ámbar reservados para toxicidad y tareas atrasadas, nada más los usa.
+  La toxicidad nunca se oculta, colapsa ni depende solo del color. El riego se
+  "revisa", nunca se "ordena" ("revisa la tierra", nunca "riega hoy"). Textos
+  de interfaz en español de Chile con tuteo, centralizados en
+  src/copy/es-CL.ts; identificadores de código en inglés. Stack fijo: React 18
+  + Vite + TypeScript estricto + React Router + Dexie + dexie-react-hooks +
+  vite-plugin-pwa + CSS Modules sobre design/tokens.css — no agregar librerías
+  de UI ni de estado global sin justificarlo en el proposal del change.
+  No completar datos de toxicidad, cuidados ni fuentes del catálogo por
+  cuenta propia: data/seed-catalog.json es un borrador sin verificar que
+  revisará la autora.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

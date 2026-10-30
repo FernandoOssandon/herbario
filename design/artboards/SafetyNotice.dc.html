@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SafetyNotice</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<section aria-labelledby="sn-title" style="width: 100%; box-sizing: border-box; background: {{t.card}}; color: {{t.ink}}; border: 2px solid {{t.ink}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: {{t.ink}}; color: {{t.card}}; display: flex; align-items: center; justify-content: center; flex: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9.5 4h5v5.5H20v5h-5.5V20h-5v-5.5H4v-5h5.5z"></path></svg>
+    </span>
+    <h3 id="sn-title" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 19px; font-weight: 400; line-height: 1.2">Cuándo consultar a un profesional</h3>
+  </div>
+  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="3">
+      <li style="display: flex; gap: 10px; font-size: 15px; font-weight: 600; line-height: 1.4">
+        <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: {{t.ink}}; margin-top: 8px; flex: none"></span>
+        <span>{{ it.text }}</span>
+      </li>
+    </sc-for>
+  </ul>
+  <p style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: {{t.muted}}">
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg>
+    Este aviso siempre está visible. La app enseña; no diagnostica.
+  </p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"contexto":{"editor":"enum","options":["planta","preparacion"],"default":"planta"},"dark":{"editor":"boolean","default":false},"$preview":{"width":358,"height":300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const ctx = this.props.contexto ?? 'planta';
+    const t = dark
+      ? { card: '#1A1F17', ink: '#F5F2E9', muted: '#B4BCAA' }
+      : { card: '#FFFFFF', ink: '#121610', muted: '#4A5244' };
+    const planta = [
+      { text: 'Si una persona mastica o traga hojas o savia: llama al CITUC ([NÚMERO]) aunque no haya síntomas.' },
+      { text: 'Si una mascota muerde la planta y babea, vomita o está decaída: ve al veterinario.' },
+      { text: 'Si la savia toca los ojos o la piel y arde: lava con abundante agua y consulta.' }
+    ];
+    const prep = [
+      { text: 'Embarazo, lactancia, niños pequeños, medicamentos permanentes o enfermedades crónicas: consulta antes a un médico o químico farmacéutico.' },
+      { text: 'Si aparece picazón, ronchas o dificultad para respirar: suspende y busca atención.' },
+      { text: 'Si una molestia dura más de unos días, no la sigas tratando en casa.' }
+    ];
+    return { t, items: ctx === 'preparacion' ? prep : planta };
+  }
+}
+</script>
+</body>
+</html>

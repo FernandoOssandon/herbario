@@ -1,0 +1,15 @@
+node_modules
+dist
+coverage
+playwright-report
+test-results
+
+# Contenido del handoff: no es código del proyecto, no se reformatea.
+design
+data
+HANDOFF.md
+CLAUDE.md
+
+# Generado por `openspec init` / artefactos de planificación: formato propio.
+openspec
+.claude

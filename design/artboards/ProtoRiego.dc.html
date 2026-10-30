@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Prototipo · Revisar riego desde Hoy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <div style="display: flex; flex-direction: column">
+      <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.1">Hoy</h1>
+      <p style="margin: 0; font-size: 16px; font-weight: 700; color: {{t.muted}}">Martes 27 de octubre</p>
+    </div>
+    <span aria-hidden="true" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"></path></svg>
+    </span>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 12px">
+    <dc-import name="SeasonBanner" estacion="primavera" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 4px 2px 0; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.amberInk}}">Atrasadas</h2>
+      <sc-for list="{{ atrasadas }}" as="c" hint-placeholder-count="1">
+        <dc-import name="CareTaskCard" planta="{{ c.planta }}" tarea="{{ c.tarea }}" tipo="{{ c.tipo }}" estado="{{ c.estado }}" meta="{{ c.meta }}" toxica="{{ c.toxica }}" on-action="{{ c.action }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+      </sc-for>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 4px 2px 0; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase">Hoy</h2>
+      <sc-for list="{{ hoy }}" as="c" hint-placeholder-count="3">
+        <dc-import name="CareTaskCard" planta="{{ c.planta }}" tarea="{{ c.tarea }}" tipo="{{ c.tipo }}" estado="{{ c.estado }}" meta="{{ c.meta }}" toxica="{{ c.toxica }}" on-action="{{ c.action }}" dark="{{ dark }}" hint-size="100%,84px"></dc-import>
+      </sc-for>
+    </section>
+  </main>
+
+  <dc-import name="NavBar" activa="hoy" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 104px; display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 16px; border-radius: 18px; background: {{t.ink}}; color: {{t.bg}}; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25)">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M5 12.5 10 17 19 7.5"></path></svg>
+      <span style="flex: 1; font-size: 15px; font-weight: 700; line-height: 1.35">{{ toast }}</span>
+      <button onClick="{{ undo }}" style="min-height: 44px; padding: 0 12px; border-radius: 14px; border: 0; background: transparent; color: {{t.bg}}; font-family: inherit; font-size: 15px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; cursor: pointer">Deshacer</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
+    <button aria-label="Cerrar" onClick="{{ close }}" style="position: absolute; inset: 0; border: 0; padding: 0; background: {{t.scrim}}; cursor: pointer"></button>
+    <section role="dialog" aria-modal="true" aria-labelledby="pr-q" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; background: {{t.card}}; border-radius: 28px 28px 0 0; padding: 10px 16px 28px; display: flex; flex-direction: column; gap: 14px">
+      <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: {{t.line}}"></span>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div aria-hidden="true" style="width: 52px; height: 52px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"></path><path d="M12 11c-3-1-5-4-4-8 3 1 5 4 4 8z"></path><path d="M12 15c2-2 5-2.5 7-1-1.5 2.5-4.5 3-7 1z"></path></svg>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 18px; font-weight: 800">{{ p.nombre }}</span>
+          <span style="font-size: 14px; font-weight: 700; color: {{t.muted}}">{{ p.lugar }}</span>
+        </div>
+        <sc-if value="{{ p.toxica }}" hint-placeholder-val="{{ true }}">
+          <dc-import name="ToxicityBadge" nivel="toxica" tam="sm" dark="{{ dark }}" hint-size="80px,24px"></dc-import>
+        </sc-if>
+        <button aria-label="Cerrar" onClick="{{ close }}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: {{t.neutralBg}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; padding: 0; flex: none; cursor: pointer">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+
+      <div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: {{t.blueBg}}; color: {{t.blueInk}}">
+        <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M4 24h32"></path><path d="M20 4v14c0 1.7 1.3 3 3 3"></path><path d="M16 9v9c0 3 2 6 5 6"></path><path d="M20 18v12"></path><path d="M8 30h1M14 33h1M27 31h1M32 28h1"></path></svg>
+        <p style="margin: 0; font-size: 15px; font-weight: 700; line-height: 1.4">Mete un dedo en la tierra hasta la segunda falange (unos 3 cm). La superficie engaña.</p>
+      </div>
+
+      <h2 id="pr-q" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">¿Cómo estaba la tierra?</h2>
+      <div role="group" aria-labelledby="pr-q" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <sc-for list="{{ suelos }}" as="s" hint-placeholder-count="4">
+          <button aria-pressed="{{ s.pressed }}" onClick="{{ s.pick }}" style="display: flex; align-items: center; gap: 10px; min-height: 72px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; border: {{s.border}}; background: {{s.bg}}; color: {{s.ink}}; font-family: inherit; text-align: left; cursor: pointer">
+            <sc-if value="{{ s.i.muySeca }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 9h18v11H3z"></path><path d="M7 9l2 4-1.5 3M14 9l-1.5 4 2 4M18 13l1.5 3"></path></svg></sc-if>
+            <sc-if value="{{ s.i.seca }}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 9h18v11H3z"></path><path d="M7 13h.5M12 16h.5M16 12.5h.5M9 18h.5M17 17h.5"></path></svg></sc-if>
+            <sc-if value="{{ s.i.humeda }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 11h18v9H3z"></path><path d="M12 2.5c-1.4 1.9-2.6 3.1-2.6 4.5a2.6 2.6 0 0 0 5.2 0c0-1.4-1.2-2.6-2.6-4.5z"></path></svg></sc-if>
+            <sc-if value="{{ s.i.empapada }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 8h18v12H3z"></path><path d="M3 12.5c2 0 2 1.3 4.5 1.3S10 12.5 12 12.5s2.5 1.3 4.5 1.3S19 12.5 21 12.5M3 16.5c2 0 2 1.3 4.5 1.3S10 16.5 12 16.5s2.5 1.3 4.5 1.3S19 16.5 21 16.5"></path></svg></sc-if>
+            <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">{{ s.label }}</span><span style="font-size: 13px; font-weight: 700">{{ s.hint }}</span></span>
+          </button>
+        </sc-for>
+      </div>
+
+      <p role="status" style="margin: 0; padding: 12px 14px; border-radius: 16px; background: {{t.neutralBg}}; font-size: 15px; font-weight: 700; line-height: 1.45">{{ consejo }}</p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <button onClick="{{ regue }}" style="min-height: 56px; border-radius: 28px; border: {{b.regue.border}}; background: {{b.regue.bg}}; color: {{b.regue.ink}}; font-family: inherit; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg>
+          Regué
+        </button>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <button onClick="{{ noNecesitaba }}" style="min-height: 52px; border-radius: 26px; border: {{b.no.border}}; background: {{b.no.bg}}; color: {{b.no.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">No necesitaba</button>
+          <button onClick="{{ manana }}" style="min-height: 52px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Mañana</button>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: null, suelo: null, res: {}, toast: null };
+  }
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', amberInk: '#6E4600', blueInk: '#234E6B', blueBg: '#DCE9F2', neutralBg: '#ECE7DB', phBg: '#DCE6D0', phInk: '#3E5A36', scrim: 'rgba(18, 22, 16, 0.55)' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', amberInk: '#FFC85C', blueInk: '#9CCBEA', blueBg: '#182C3A', neutralBg: '#262B22', phBg: '#26331F', phInk: '#A9C99C', scrim: 'rgba(0, 0, 0, 0.62)' };
+    const t = dark ? D : L;
+    const st = this.state || {};
+    const res = st.res || {};
+    const plantas = {
+      cuna: { nombre: 'Cuna de Moisés', lugar: 'Living · último riego hace 6 días', toxica: true },
+      menta: { nombre: 'Menta', lugar: 'Living · último riego hace 3 días', toxica: false }
+    };
+    const metaFor = (r) => (r === 'regada' || r === 'hecha') ? 'Hecho' : r === 'no' ? 'jue 29' : r === 'manana' ? 'mañana' : '';
+    const estadoFor = (r, base) => (r === 'regada' || r === 'hecha') ? 'hecha' : (r === 'no' || r === 'manana') ? 'proxima' : base;
+    const open = (id) => () => this.setState({ open: id, suelo: null, toast: null });
+    const done = (id, msg) => () => this.setState({ res: { ...res, [id]: 'hecha' }, toast: msg });
+    const card = (id, planta, tarea, tipo, base, baseMeta, toxica, action) => ({
+      planta, tarea, tipo, toxica,
+      estado: estadoFor(res[id], base),
+      meta: res[id] ? metaFor(res[id]) : baseMeta,
+      action: res[id] ? null : action
+    });
+    const sel = st.suelo;
+    const SU = [
+      { id: 'muySeca', label: 'Muy seca', hint: 'Se despega de la maceta' },
+      { id: 'seca', label: 'Seca', hint: 'Seca a 3 cm, suelta' },
+      { id: 'humeda', label: 'Húmeda', hint: 'Fresca, se pega al dedo' },
+      { id: 'empapada', label: 'Empapada', hint: 'Escurre agua o huele' }
+    ];
+    const consejos = {
+      muySeca: 'Muy seca: riega ya, en dos tandas, para que el agua no se escape por los bordes.',
+      seca: 'Seca: buen momento. Riega hasta que salga agua por abajo y bota lo que quede en el plato.',
+      humeda: 'Húmeda: todavía no. Te volvemos a preguntar en 2 días.',
+      empapada: 'Empapada: no riegues. Vacía el plato; el exceso de agua pudre las raíces.'
+    };
+    const rec = !sel ? null : (sel === 'muySeca' || sel === 'seca') ? 'regue' : 'no';
+    const primary = { border: '0', bg: t.leaf, ink: t.onLeaf };
+    const secondary = { border: '1.5px solid ' + t.line, bg: 'transparent', ink: t.ink };
+    const p = plantas[st.open] || plantas.cuna;
+    const finish = (kind, msg) => () => {
+      const id = this.state.open;
+      this.setState({ open: null, suelo: null, res: { ...(this.state.res || {}), [id]: kind }, toast: msg(plantas[id].nombre) });
+    };
+    return {
+      dark, t, p,
+      isOpen: !!st.open,
+      toast: st.toast || false,
+      atrasadas: [card('cuna', 'Cuna de Moisés', 'Revisar riego', 'riego', 'atrasada', 'Atrasada 1 día', true, open('cuna'))],
+      hoy: [
+        card('tomillo', 'Tomillo', 'Despuntar', 'poda', 'pendiente', '', false, done('tomillo', 'Tomillo despuntado. Anótalo en su historia si quieres.')),
+        card('tomate', 'Tomate cherry', 'Polinizar flores', 'polinizar', 'pendiente', '', false, done('tomate', 'Flores polinizadas. Repite en 2 o 3 días.')),
+        card('menta', 'Menta', 'Revisar riego', 'riego', 'pendiente', '', false, open('menta'))
+      ],
+      suelos: SU.map((s) => {
+        const on = s.id === sel;
+        const i = { muySeca: false, seca: false, humeda: false, empapada: false }; i[s.id] = true;
+        return { ...s, i, pressed: on ? 'true' : 'false', border: on ? '2.5px solid ' + t.leaf : '1.5px solid ' + t.line, bg: on ? t.leafSoft : t.card, ink: on ? t.leafInk : t.ink, pick: () => this.setState({ suelo: s.id }) };
+      }),
+      consejo: sel ? consejos[sel] : 'Elige cómo estaba la tierra y te digo qué hacer.',
+      b: { regue: rec === 'no' ? secondary : primary, no: rec === 'no' ? primary : secondary },
+      close: () => this.setState({ open: null, suelo: null }),
+      regue: finish('regada', (n) => 'Riego registrado: ' + n + '. Próxima revisión: sáb 31.'),
+      noNecesitaba: finish('no', (n) => 'Bien visto. Revisamos ' + n + ' de nuevo el jue 29.'),
+      manana: finish('manana', (n) => 'Te recuerdo ' + n + ' mañana.'),
+      undo: () => this.setState({ res: {}, toast: null, open: null, suelo: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

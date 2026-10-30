@@ -1,0 +1,26 @@
+.group {
+  display: inline-flex;
+  padding: var(--space-1);
+  background: var(--color-neutral-bg);
+  border-radius: var(--radius-pill);
+  gap: var(--space-1);
+}
+
+.option {
+  min-height: var(--tap-min);
+  padding: 0 var(--space-4);
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink-2);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-secondary);
+  cursor: pointer;
+}
+
+.optionActive {
+  background: var(--color-surface);
+  color: var(--color-leaf-ink);
+  font-weight: 800;
+}

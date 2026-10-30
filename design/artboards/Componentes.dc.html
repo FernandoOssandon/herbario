@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Herbario · Componentes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1280px; height: 1760px; box-sizing: border-box; padding: 56px 64px; background: {{t.bg}}; color: {{t.ink}}; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; display: flex; flex-direction: column; gap: 36px; overflow: hidden">
+  <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; border-bottom: 2px solid {{t.ink}}; padding-bottom: 18px">
+    <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1">Componentes</h1>
+    <p style="margin: 0; max-width: 560px; font-size: 16px; font-weight: 600; line-height: 1.5; color: {{t.muted}}">Cada componente es una pieza reutilizable con sus variantes como ajustes. Las pantallas los usan tal cual: si cambias uno aquí, cambia en todas.</p>
+  </header>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; align-items: start">
+
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">ToxicityBadge</h2>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start">
+          <dc-import name="ToxicityBadge" nivel="toxica" para="ambas" tam="md" dark="{{ dark }}" hint-size="240px,32px"></dc-import>
+          <dc-import name="ToxicityBadge" nivel="precaucion" para="mascotas" tam="md" dark="{{ dark }}" hint-size="200px,32px"></dc-import>
+          <dc-import name="ToxicityBadge" nivel="no-toxica" para="personas" tam="md" dark="{{ dark }}" hint-size="200px,32px"></dc-import>
+          <dc-import name="ToxicityBadge" nivel="desconocida" para="" tam="md" dark="{{ dark }}" hint-size="200px,32px"></dc-import>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-import name="ToxicityBadge" nivel="toxica" tam="sm" dark="{{ dark }}" hint-size="80px,24px"></dc-import>
+          <dc-import name="ToxicityBadge" nivel="precaucion" tam="sm" dark="{{ dark }}" hint-size="100px,24px"></dc-import>
+          <dc-import name="ToxicityBadge" nivel="no-toxica" tam="sm" dark="{{ dark }}" hint-size="100px,24px"></dc-import>
+        </div>
+        <p style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.45; color: {{t.muted}}">Grande en fichas y detalle (dice para quién); pequeña en tarjetas y listas. Nunca se oculta ni se colapsa.</p>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">Chips · estado de planta</h2>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-import name="Chip" tipo="estado" estado="activa" dark="{{ dark }}" hint-size="90px,28px"></dc-import>
+          <dc-import name="Chip" tipo="estado" estado="observacion" dark="{{ dark }}" hint-size="140px,28px"></dc-import>
+          <dc-import name="Chip" tipo="estado" estado="recuperacion" dark="{{ dark }}" hint-size="150px,28px"></dc-import>
+          <dc-import name="Chip" tipo="estado" estado="plantin" dark="{{ dark }}" hint-size="90px,28px"></dc-import>
+          <dc-import name="Chip" tipo="estado" estado="perdida" dark="{{ dark }}" hint-size="110px,28px"></dc-import>
+        </div>
+        <h2 style="margin: 8px 0 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">Chips · etiqueta y filtro</h2>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-import name="Chip" tipo="etiqueta" label="poca luz" dark="{{ dark }}" hint-size="100px,28px"></dc-import>
+          <dc-import name="Chip" tipo="etiqueta" label="pulgones" dark="{{ dark }}" hint-size="100px,28px"></dc-import>
+          <dc-import name="Chip" tipo="etiqueta" label="primera flor" dark="{{ dark }}" hint-size="120px,28px"></dc-import>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-import name="Chip" tipo="filtro" label="Todas" selected="{{ true }}" dark="{{ dark }}" hint-size="100px,44px"></dc-import>
+          <dc-import name="Chip" tipo="filtro" label="Balcón" dark="{{ dark }}" hint-size="90px,44px"></dc-import>
+          <dc-import name="Chip" tipo="filtro" label="Comestibles" dark="{{ dark }}" hint-size="130px,44px"></dc-import>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">SeasonBanner</h2>
+        <dc-import name="SeasonBanner" estacion="primavera" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+        <dc-import name="SeasonBanner" estacion="verano" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+        <dc-import name="SeasonBanner" estacion="otono" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+        <dc-import name="SeasonBanner" estacion="invierno" dark="{{ dark }}" hint-size="100%,130px"></dc-import>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">CareTaskCard · estados</h2>
+        <dc-import name="CareTaskCard" planta="Cuna de Moisés" tarea="Revisar riego" tipo="riego" estado="atrasada" meta="Atrasada 1 día" toxica="{{ true }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+        <dc-import name="CareTaskCard" planta="Tomillo" tarea="Despuntar" tipo="poda" estado="pendiente" meta="" toxica="{{ false }}" dark="{{ dark }}" hint-size="100%,84px"></dc-import>
+        <dc-import name="CareTaskCard" planta="Tomate cherry" tarea="Polinizar flores" tipo="polinizar" estado="hecha" meta="10:24" toxica="{{ false }}" dark="{{ dark }}" hint-size="100%,84px"></dc-import>
+        <dc-import name="CareTaskCard" planta="Alocasia" tarea="Rotar hacia la luz" tipo="rotar" estado="proxima" meta="jue 29" toxica="{{ true }}" dark="{{ dark }}" hint-size="100%,64px"></dc-import>
+        <p style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.45; color: {{t.muted}}">Riego abre «Revisar riego» (botón lleno con gota). Otras tareas se marcan con un toque (check). Atrasada: borde y etiqueta ámbar.</p>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">PhotoPicker</h2>
+        <dc-import name="PhotoPicker" estado="vacio" dark="{{ dark }}" hint-size="100%,330px"></dc-import>
+        <dc-import name="PhotoPicker" estado="foto" dark="{{ dark }}" hint-size="100%,320px"></dc-import>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">SafetyNotice · no se puede ocultar</h2>
+        <dc-import name="SafetyNotice" contexto="planta" dark="{{ dark }}" hint-size="100%,300px"></dc-import>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">TimelineItem</h2>
+        <div style="display: flex; flex-direction: column">
+          <dc-import name="TimelineItem" tipo="observacion" fecha="27 oct" titulo="Se está estirando hacia la ventana" texto="Tallos largos y hojas separadas: señal de poca luz." con-foto="{{ true }}" dark="{{ dark }}" hint-size="100%,270px"></dc-import>
+          <dc-import name="TimelineItem" tipo="cuidado" fecha="24 oct" titulo="Despunte" texto="Corté las 4 puntas más largas sobre un par de hojas." con-foto="{{ false }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+          <dc-import name="TimelineItem" tipo="hito" fecha="2 oct" titulo="Llegó a casa" texto="Comprada en la feria, en maceta de 10 cm." con-foto="{{ false }}" ultimo="{{ true }}" dark="{{ dark }}" hint-size="100%,100px"></dc-import>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">EmptyState</h2>
+        <dc-import name="EmptyState" variante="hoy" dark="{{ dark }}" hint-size="100%,380px"></dc-import>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.muted}}">NavBar</h2>
+        <dc-import name="NavBar" activa="hoy" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1280,"height":1760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const t = dark
+      ? { bg: '#0E110D', ink: '#F5F2E9', muted: '#B4BCAA' }
+      : { bg: '#F7F4EC', ink: '#121610', muted: '#4A5244' };
+    return { dark, t };
+  }
+}
+</script>
+</body>
+</html>

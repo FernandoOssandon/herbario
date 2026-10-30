@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>TimelineItem</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; display: flex; gap: 12px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; color: {{t.ink}}">
+  <div style="display: flex; flex-direction: column; align-items: center; flex: none; width: 40px">
+    <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: {{k.bg}}; color: {{k.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+      <sc-if value="{{ is.foto }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></sc-if>
+      <sc-if value="{{ is.cuidado }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+      <sc-if value="{{ is.observacion }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></sc-if>
+      <sc-if value="{{ is.problema }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="m15 15 5 5"></path></svg></sc-if>
+      <sc-if value="{{ is.hito }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4M6 4h11l-2 4 2 4H6"></path></svg></sc-if>
+      <sc-if value="{{ is.cosecha }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16l-1.5 9.5h-13z"></path><path d="M8 10l3-6M16 10l-3-6"></path></svg></sc-if>
+      <sc-if value="{{ is.nota }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4L16 5l3 3L9 18z"></path><path d="M14 7l3 3"></path></svg></sc-if>
+    </span>
+    <sc-if value="{{ showRail }}" hint-placeholder-val="{{ true }}">
+      <span aria-hidden="true" style="flex: 1; width: 2px; min-height: 16px; background: {{t.line}}; margin-top: 4px"></span>
+    </sc-if>
+  </div>
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding-bottom: 20px">
+    <span style="font-size: 13px; font-weight: 800; color: {{t.muted}}">{{ fecha }} · {{ k.label }}</span>
+    <span style="font-size: 17px; font-weight: 800; line-height: 1.25">{{ titulo }}</span>
+    <span style="font-size: 15px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">{{ texto }}</span>
+    <sc-if value="{{ conFoto }}" hint-placeholder-val="{{ true }}">
+      <div role="img" aria-label="Foto del registro" style="margin-top: 6px; width: 100%; height: 150px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"></path><path d="M12 11c-3-1-5-4-4-8 3 1 5 4 4 8z"></path><path d="M12 15c2-2 5-2.5 7-1-1.5 2.5-4.5 3-7 1z"></path></svg>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tipo":{"editor":"enum","options":["foto","cuidado","observacion","problema","hito","cosecha","nota"],"default":"foto"},"fecha":{"editor":"text","default":"27 oct"},"titulo":{"editor":"text","default":"Se está estirando hacia la ventana"},"texto":{"editor":"text","default":"Tallos largos y hojas separadas: señal de poca luz."},"conFoto":{"editor":"boolean","default":true},"ultimo":{"editor":"boolean","default":false},"dark":{"editor":"boolean","default":false},"$preview":{"width":358,"height":280}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const tipo = this.props.tipo ?? 'foto';
+    const t = dark
+      ? { ink: '#F5F2E9', muted: '#B4BCAA', line: '#343D2E', phBg: '#26331F', phInk: '#A9C99C' }
+      : { ink: '#121610', muted: '#4A5244', line: '#DCD3C0', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const KL = {
+      foto: ['#DCEAD2', '#1F421D', 'Foto'], cuidado: ['#DCEAD2', '#1F421D', 'Cuidado'], observacion: ['#DCE9F2', '#234E6B', 'Observación'],
+      problema: ['#F5DFD2', '#7E3818', 'Problema'], hito: ['#DCE9F2', '#234E6B', 'Hito'], cosecha: ['#F5DFD2', '#7E3818', 'Cosecha'], nota: ['#ECE7DB', '#121610', 'Nota']
+    };
+    const KD = {
+      foto: ['#2A3D24', '#C4EBB6', 'Foto'], cuidado: ['#2A3D24', '#C4EBB6', 'Cuidado'], observacion: ['#182C3A', '#9CCBEA', 'Observación'],
+      problema: ['#3E2618', '#F4B490', 'Problema'], hito: ['#182C3A', '#9CCBEA', 'Hito'], cosecha: ['#3E2618', '#F4B490', 'Cosecha'], nota: ['#262B22', '#F5F2E9', 'Nota']
+    };
+    const kk = (dark ? KD : KL)[tipo] || KL.foto;
+    const is = { foto: false, cuidado: false, observacion: false, problema: false, hito: false, cosecha: false, nota: false };
+    is[tipo] = true;
+    return {
+      t, is, k: { bg: kk[0], ink: kk[1], label: kk[2] },
+      fecha: this.props.fecha ?? '27 oct',
+      titulo: this.props.titulo ?? 'Se está estirando hacia la ventana',
+      texto: this.props.texto ?? 'Tallos largos y hojas separadas: señal de poca luz.',
+      conFoto: this.props.conFoto ?? true,
+      showRail: !(this.props.ultimo ?? false)
+    };
+  }
+}
+</script>
+</body>
+</html>

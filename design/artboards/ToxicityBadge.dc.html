@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>ToxicityBadge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<span style="display: inline-flex; align-items: center; gap: 5px; box-sizing: border-box; min-height: {{sz.h}}px; padding: 0 {{sz.pad}}px; border-radius: 10px; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; font-size: {{sz.fs}}px; font-weight: 800; line-height: 1.2; white-space: nowrap; background: {{c.bg}}; color: {{c.ink}}; border: 1.5px {{c.style}} {{c.border}}">
+  <sc-if value="{{ isTox }}" hint-placeholder-val="{{ true }}">
+    <svg aria-hidden="true" width="{{sz.icon}}" height="{{sz.icon}}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19.5H3z"></path><path d="M12 10v4M12 17v.5"></path></svg>
+  </sc-if>
+  <sc-if value="{{ isPrec }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="{{sz.icon}}" height="{{sz.icon}}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V13M12 16v.4"></path></svg>
+  </sc-if>
+  <sc-if value="{{ isNo }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="{{sz.icon}}" height="{{sz.icon}}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v5.5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6z"></path><path d="m9 12 2.2 2.2L15.5 10"></path></svg>
+  </sc-if>
+  <sc-if value="{{ isUnk }}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="{{sz.icon}}" height="{{sz.icon}}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.8 9.5a2.3 2.3 0 0 1 4.4.8c0 1.6-2.2 2-2.2 3.4M12 16.5v.3"></path></svg>
+  </sc-if>
+  <span>{{ text }}</span>
+</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nivel":{"editor":"enum","options":["toxica","precaucion","no-toxica","desconocida"],"default":"toxica"},"para":{"editor":"enum","options":["","personas","mascotas","ambas"],"default":"mascotas"},"tam":{"editor":"enum","options":["sm","md"],"default":"md"},"dark":{"editor":"boolean","default":false},"$preview":{"width":240,"height":44}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const nivel = this.props.nivel ?? 'toxica';
+    const para = this.props.para ?? 'mascotas';
+    const tam = this.props.tam ?? 'md';
+    const L = {
+      toxica: { bg: '#FADCD7', ink: '#9E1A14', border: '#C7372E', style: 'solid' },
+      precaucion: { bg: '#FCE9BE', ink: '#6E4600', border: '#FCE9BE', style: 'solid' },
+      'no-toxica': { bg: '#DCEAD2', ink: '#1F421D', border: '#DCEAD2', style: 'solid' },
+      desconocida: { bg: '#ECE7DB', ink: '#4A5244', border: '#9A9483', style: 'dashed' }
+    };
+    const D = {
+      toxica: { bg: '#42160F', ink: '#FFA095', border: '#F07468', style: 'solid' },
+      precaucion: { bg: '#3B2B08', ink: '#FFC85C', border: '#3B2B08', style: 'solid' },
+      'no-toxica': { bg: '#2A3D24', ink: '#C4EBB6', border: '#2A3D24', style: 'solid' },
+      desconocida: { bg: '#262B22', ink: '#B4BCAA', border: '#6B7362', style: 'dashed' }
+    };
+    const nombres = { toxica: 'Tóxica', precaucion: 'Precaución', 'no-toxica': 'No tóxica', desconocida: 'Toxicidad desconocida' };
+    const quien = { personas: 'personas', mascotas: 'mascotas', ambas: 'personas y mascotas' };
+    const base = nombres[nivel] || nombres.toxica;
+    const text = (tam === 'md' && para && quien[para] && nivel !== 'desconocida') ? base + ' · ' + quien[para] : base;
+    const sz = tam === 'sm' ? { h: 24, pad: 7, fs: 13, icon: 13 } : { h: 32, pad: 10, fs: 14, icon: 16 };
+    return {
+      c: (dark ? D : L)[nivel] || (dark ? D : L).toxica,
+      sz, text,
+      isTox: nivel === 'toxica', isPrec: nivel === 'precaucion', isNo: nivel === 'no-toxica', isUnk: nivel === 'desconocida'
+    };
+  }
+}
+</script>
+</body>
+</html>

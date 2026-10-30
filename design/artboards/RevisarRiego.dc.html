@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Revisar riego</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; color: {{t.ink}}; background: {{t.bg}}">
+  <div aria-hidden="true" style="position: absolute; inset: 0">
+    <dc-import name="Hoy" dark="{{ dark }}" hint-size="390px,844px"></dc-import>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: {{t.scrim}}"></div>
+
+  <section role="dialog" aria-modal="true" aria-labelledby="rr-q" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; background: {{t.card}}; border-radius: 28px 28px 0 0; padding: 10px 16px 28px; display: flex; flex-direction: column; gap: 14px">
+    <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: {{t.line}}"></span>
+
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div aria-hidden="true" style="width: 52px; height: 52px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"></path><path d="M12 11c-3-1-5-4-4-8 3 1 5 4 4 8z"></path><path d="M12 15c2-2 5-2.5 7-1-1.5 2.5-4.5 3-7 1z"></path></svg>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 18px; font-weight: 800">Cuna de Moisés</span>
+        <span style="font-size: 14px; font-weight: 700; color: {{t.muted}}">Living · último riego hace 6 días</span>
+      </div>
+      <dc-import name="ToxicityBadge" nivel="toxica" tam="sm" dark="{{ dark }}" hint-size="80px,24px"></dc-import>
+      <button aria-label="Cerrar" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: {{t.neutralBg}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; padding: 0; flex: none; cursor: pointer">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </button>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: {{t.blueBg}}; color: {{t.blueInk}}">
+      <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M4 24h32"></path><path d="M20 4v14c0 1.7 1.3 3 3 3"></path><path d="M16 9v9c0 3 2 6 5 6"></path><path d="M20 18v12"></path><path d="M8 30h1M14 33h1M27 31h1M32 28h1"></path></svg>
+      <p style="margin: 0; font-size: 15px; font-weight: 700; line-height: 1.4">Mete un dedo en la tierra hasta la segunda falange (unos 3 cm). La superficie engaña: lo que importa está abajo.</p>
+    </div>
+
+    <h2 id="rr-q" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">¿Cómo estaba la tierra?</h2>
+
+    <div role="radiogroup" aria-labelledby="rr-q" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <label style="display: flex; align-items: center; gap: 10px; min-height: 72px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; cursor: pointer">
+        <input type="radio" name="tierra" value="muy-seca" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{t.terra}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 9h18v11H3z"></path><path d="M7 9l2 4-1.5 3M14 9l-1.5 4 2 4M18 13l1.5 3"></path></svg>
+        <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Muy seca</span><span style="font-size: 13px; font-weight: 700; color: {{t.muted}}">Se despega de la maceta</span></span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 10px; min-height: 72px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; border: 2.5px solid {{t.leaf}}; background: {{t.leafSoft}}; cursor: pointer">
+        <input type="radio" name="tierra" value="seca" checked style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{t.leafInk}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 9h18v11H3z"></path><path d="M7 13h.5M12 16h.5M16 12.5h.5M9 18h.5M17 17h.5"></path></svg>
+        <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800; color: {{t.leafInk}}">Seca</span><span style="font-size: 13px; font-weight: 700; color: {{t.leafInk}}">Seca a 3 cm, suelta</span></span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 10px; min-height: 72px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; cursor: pointer">
+        <input type="radio" name="tierra" value="humeda" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{t.blueInk}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 11h18v9H3z"></path><path d="M12 2.5c-1.4 1.9-2.6 3.1-2.6 4.5a2.6 2.6 0 0 0 5.2 0c0-1.4-1.2-2.6-2.6-4.5z"></path></svg>
+        <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Húmeda</span><span style="font-size: 13px; font-weight: 700; color: {{t.muted}}">Fresca, se pega al dedo</span></span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 10px; min-height: 72px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; border: 1.5px solid {{t.line}}; background: {{t.card}}; cursor: pointer">
+        <input type="radio" name="tierra" value="empapada" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{t.blueInk}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M3 8h18v12H3z"></path><path d="M3 12.5c2 0 2 1.3 4.5 1.3S10 12.5 12 12.5s2.5 1.3 4.5 1.3S19 12.5 21 12.5M3 16.5c2 0 2 1.3 4.5 1.3S10 16.5 12 16.5s2.5 1.3 4.5 1.3S19 16.5 21 16.5"></path></svg>
+        <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Empapada</span><span style="font-size: 13px; font-weight: 700; color: {{t.muted}}">Escurre agua o huele</span></span>
+      </label>
+    </div>
+
+    <p role="status" style="margin: 0; padding: 12px 14px; border-radius: 16px; background: {{t.neutralBg}}; font-size: 15px; font-weight: 700; line-height: 1.45">Tierra seca: buen momento. Riega despacio hasta que salga agua por abajo y bota lo que quede en el plato.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <button style="min-height: 56px; border-radius: 28px; border: 0; background: {{t.leaf}}; color: {{t.onLeaf}}; font-family: inherit; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg>
+        Regué
+      </button>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <button style="min-height: 52px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">No necesitaba</button>
+        <button style="min-height: 52px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Mañana</button>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', terra: '#94431F', blueInk: '#234E6B', blueBg: '#DCE9F2', neutralBg: '#ECE7DB', phBg: '#DCE6D0', phInk: '#3E5A36', scrim: 'rgba(18, 22, 16, 0.55)' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', terra: '#EE9B70', blueInk: '#9CCBEA', blueBg: '#182C3A', neutralBg: '#262B22', phBg: '#26331F', phInk: '#A9C99C', scrim: 'rgba(0, 0, 0, 0.62)' };
+    return { dark, t: dark ? D : L };
+  }
+}
+</script>
+</body>
+</html>

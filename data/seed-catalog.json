@@ -1,0 +1,288 @@
+{
+  "_aviso": "Catálogo inicial de especies para v0.1. Los textos de cuidado y toxicidad son un BORRADOR sin verificar: cada especie tiene verified=false y sources vacío. La app debe mostrar la ficha igual, pero la autora revisará y completará fuentes antes de usar esto en el libro. No inventar fuentes.",
+  "schemaVersion": 1,
+  "lightScale": {
+    "1": "Baja: lejos de la ventana",
+    "2": "Media: cerca de una ventana, sin sol directo",
+    "3": "Alta: junto a una ventana luminosa, algo de sol",
+    "4": "Sol directo: 4 a 6 horas o más"
+  },
+  "defaultLocations": [
+    { "id": "loc-cocina", "name": "Cocina", "kind": "interior", "light": 2, "order": 1 },
+    { "id": "loc-living", "name": "Living", "kind": "interior", "light": 1, "order": 2 },
+    { "id": "loc-balcon", "name": "Balcón", "kind": "exterior", "light": 4, "order": 3 }
+  ],
+  "species": [
+    {
+      "id": "ocimum-basilicum",
+      "commonName": "Albahaca",
+      "scientificName": "Ocimum basilicum",
+      "family": "Lamiaceae",
+      "otherNames": [],
+      "kind": "comestible-medicinal",
+      "lightNeed": 3,
+      "toxicity": { "humans": "no-toxica", "pets": "no-toxica" },
+      "care": {
+        "light": "Mucha luz; idealmente algo de sol directo.",
+        "water": "Tierra apenas húmeda; no deja que se seque del todo.",
+        "temperature": "Sufre con frío; nada de heladas.",
+        "humidity": "Media."
+      },
+      "usedParts": "Hojas frescas.",
+      "precautions": ["Despunta las flores para que siga dando hojas."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 2, "verano": 1, "otono": 3, "invierno": 4 }, "note": "Revisa la tierra; riega si está seca a 2 cm" },
+        { "type": "poda", "everyDaysBySeason": { "primavera": 14, "verano": 10 }, "note": "Despunta sobre un par de hojas" },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 21, "verano": 21 }, "note": "Abono orgánico suave" },
+        { "type": "plagas", "everyDaysBySeason": { "primavera": 7, "verano": 7, "otono": 14 }, "note": "Mira el revés de las hojas" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "solanum-lycopersicum-cerasiforme",
+      "commonName": "Tomate cherry",
+      "scientificName": "Solanum lycopersicum var. cerasiforme",
+      "family": "Solanaceae",
+      "otherNames": ["tomatito"],
+      "kind": "comestible-medicinal",
+      "lightNeed": 4,
+      "toxicity": {
+        "humans": "precaucion", "humansNote": "El fruto maduro se come; hojas y tallos no.",
+        "pets": "precaucion", "petsNote": "Hojas, tallos y frutos verdes pueden causar malestar digestivo."
+      },
+      "care": {
+        "light": "Sol directo; con poca luz florece poco.",
+        "water": "Riego parejo; los cambios bruscos agrietan el fruto.",
+        "temperature": "Templado a cálido.",
+        "humidity": "Media; ventila para evitar hongos."
+      },
+      "usedParts": "Fruto maduro.",
+      "precautions": ["En interior hay que polinizar a mano: agita las flores o pásales un pincel."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 2, "verano": 1, "otono": 3 }, "note": "Revisa la tierra; riega si está seca a 2 cm" },
+        { "type": "polinizar", "everyDaysBySeason": { "primavera": 3, "verano": 3 }, "note": "Agita las flores o usa un pincel", "onlyInterior": true },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 14, "verano": 14 }, "note": "Abono rico en potasio al florecer" },
+        { "type": "plagas", "everyDaysBySeason": { "primavera": 7, "verano": 7 }, "note": "Mosca blanca y pulgón" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "thymus-vulgaris",
+      "commonName": "Tomillo",
+      "scientificName": "Thymus vulgaris",
+      "family": "Lamiaceae",
+      "otherNames": [],
+      "kind": "comestible-medicinal",
+      "lightNeed": 4,
+      "toxicity": { "humans": "no-toxica", "pets": "no-toxica" },
+      "care": {
+        "light": "Varias horas de sol directo. Con poca luz se ahíla.",
+        "water": "Poco: deja secar la tierra entre riegos.",
+        "temperature": "Resiste frío y calor.",
+        "humidity": "Baja; odia el encharcamiento."
+      },
+      "usedParts": "Hojas y puntas tiernas.",
+      "precautions": ["Lo ahilado no se recupera: despunta y dale más luz."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 4, "verano": 3, "otono": 6, "invierno": 8 }, "note": "Riega solo si está seca a 3 cm" },
+        { "type": "poda", "everyDaysBySeason": { "primavera": 14, "verano": 21 }, "note": "Despunta para que ramifique" },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 28 }, "note": "Abono suave" },
+        { "type": "rotar", "everyDaysBySeason": { "primavera": 7, "verano": 7, "otono": 7, "invierno": 7 }, "note": "Un cuarto de vuelta", "onlyInterior": true }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "petroselinum-crispum",
+      "commonName": "Perejil",
+      "scientificName": "Petroselinum crispum",
+      "family": "Apiaceae",
+      "otherNames": [],
+      "kind": "comestible-medicinal",
+      "lightNeed": 3,
+      "toxicity": {
+        "humans": "no-toxica", "humansNote": "En cantidades culinarias.",
+        "pets": "precaucion", "petsNote": "En gran cantidad puede causar fotosensibilidad."
+      },
+      "care": {
+        "light": "Luz alta o sol de mañana.",
+        "water": "Tierra húmeda pero no empapada.",
+        "temperature": "Prefiere templado; tolera frío.",
+        "humidity": "Media."
+      },
+      "usedParts": "Hojas y tallos.",
+      "precautions": ["Cosecha desde afuera hacia adentro."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 2, "verano": 2, "otono": 3, "invierno": 4 }, "note": "Revisa la tierra" },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 28, "verano": 28 }, "note": "Abono suave" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "mentha-spicata",
+      "commonName": "Menta",
+      "scientificName": "Mentha spicata",
+      "family": "Lamiaceae",
+      "otherNames": ["hierbabuena"],
+      "kind": "comestible-medicinal",
+      "lightNeed": 3,
+      "toxicity": {
+        "humans": "no-toxica",
+        "pets": "precaucion", "petsNote": "Puede causar vómitos o diarrea en perros y gatos."
+      },
+      "care": {
+        "light": "Luz alta o sol suave.",
+        "water": "Le gusta la tierra húmeda.",
+        "temperature": "Templado.",
+        "humidity": "Media."
+      },
+      "usedParts": "Hojas.",
+      "precautions": ["Es invasora: mejor en maceta propia."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 2, "verano": 1, "otono": 3, "invierno": 4 }, "note": "Revisa la tierra" },
+        { "type": "poda", "everyDaysBySeason": { "primavera": 14, "verano": 14 }, "note": "Corta las puntas para que se ponga tupida" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "mentha-x-piperita",
+      "commonName": "Menta piperita",
+      "scientificName": "Mentha × piperita",
+      "family": "Lamiaceae",
+      "otherNames": [],
+      "kind": "comestible-medicinal",
+      "lightNeed": 3,
+      "toxicity": {
+        "humans": "no-toxica", "humansNote": "El aceite esencial concentrado requiere precaución.",
+        "pets": "precaucion"
+      },
+      "care": {
+        "light": "Luz alta o sol suave.",
+        "water": "Tierra húmeda.",
+        "temperature": "Templado.",
+        "humidity": "Media."
+      },
+      "usedParts": "Hojas.",
+      "precautions": [],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 2, "verano": 1, "otono": 3, "invierno": 4 }, "note": "Revisa la tierra" },
+        { "type": "poda", "everyDaysBySeason": { "primavera": 14, "verano": 14 }, "note": "Despunta" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "mentha-pulegium",
+      "commonName": "Poleo",
+      "scientificName": "Mentha pulegium",
+      "family": "Lamiaceae",
+      "otherNames": [],
+      "kind": "comestible-medicinal",
+      "lightNeed": 3,
+      "toxicity": {
+        "humans": "precaucion", "humansNote": "El aceite esencial es muy tóxico. La infusión no es segura en el embarazo.",
+        "pets": "toxica", "petsNote": "Tóxica para perros y gatos."
+      },
+      "care": {
+        "light": "Sol o media sombra luminosa.",
+        "water": "Tierra fresca; no dejar secar del todo.",
+        "temperature": "Templado.",
+        "humidity": "Media."
+      },
+      "usedParts": "Hojas (ver precauciones).",
+      "precautions": ["Nunca usar el aceite esencial.", "Fuera del alcance de mascotas y niños."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 3, "verano": 2, "otono": 4, "invierno": 6 }, "note": "Riega si está seca a 2 cm" },
+        { "type": "poda", "everyDaysBySeason": { "primavera": 21, "verano": 21 }, "note": "Para que se ponga tupido" },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 28, "verano": 28 }, "note": "Abono orgánico suave" },
+        { "type": "plagas", "everyDaysBySeason": { "primavera": 7, "verano": 7 }, "note": "Pulgones y arañita roja" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "dracaena-trifasciata",
+      "commonName": "Sansevieria",
+      "scientificName": "Dracaena trifasciata",
+      "family": "Asparagaceae",
+      "otherNames": ["lengua de suegra"],
+      "kind": "ornamental",
+      "lightNeed": 1,
+      "toxicity": {
+        "humans": "precaucion", "humansNote": "Irritante si se mastica.",
+        "pets": "toxica", "petsNote": "Vómitos y diarrea en perros y gatos."
+      },
+      "care": {
+        "light": "Tolera poca luz; crece mejor con luz alta.",
+        "water": "Muy poco. Deja secar por completo.",
+        "temperature": "Templado; protégela de heladas.",
+        "humidity": "Indiferente."
+      },
+      "usedParts": "Ninguna. Es ornamental.",
+      "precautions": ["El exceso de riego es su principal enemigo."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 10, "verano": 7, "otono": 14, "invierno": 21 }, "note": "Riega solo si está seca por completo" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "spathiphyllum-wallisii",
+      "commonName": "Cuna de Moisés",
+      "scientificName": "Spathiphyllum wallisii",
+      "family": "Araceae",
+      "otherNames": ["espatifilo", "lirio de la paz"],
+      "kind": "ornamental",
+      "lightNeed": 2,
+      "toxicity": {
+        "humans": "toxica", "humansNote": "Cristales de oxalato de calcio: si se mastica, irrita boca y garganta. La savia puede irritar la piel.",
+        "pets": "toxica", "petsNote": "En gatos y perros: babeo, vómitos y dificultad para tragar."
+      },
+      "care": {
+        "light": "Indirecta y brillante. Tolera poca luz, pero florece menos.",
+        "water": "Tierra apenas húmeda. Si se desmaya, tiene sed.",
+        "temperature": "Interior templado. Sufre bajo los 12 °C.",
+        "humidity": "Media a alta. Lejos de estufas."
+      },
+      "usedParts": "Ninguna. Es solo ornamental: no tiene usos culinarios ni medicinales seguros.",
+      "precautions": ["Lávate las manos después de podar o trasplantar.", "Déjala en altura, lejos de gatos y perros.", "Bota las hojas cortadas donde las mascotas no lleguen."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 4, "verano": 3, "otono": 5, "invierno": 7 }, "note": "Riega si está seca a 3 cm" },
+        { "type": "abono", "everyDaysBySeason": { "primavera": 30, "verano": 30 }, "note": "Abono suave para plantas de interior" }
+      ],
+      "verified": false,
+      "sources": []
+    },
+    {
+      "id": "alocasia-sp",
+      "commonName": "Alocasia",
+      "scientificName": "Alocasia sp.",
+      "family": "Araceae",
+      "otherNames": ["oreja de elefante"],
+      "kind": "ornamental",
+      "lightNeed": 3,
+      "toxicity": {
+        "humans": "toxica", "humansNote": "Oxalato de calcio: irrita boca, garganta y piel.",
+        "pets": "toxica", "petsNote": "Babeo, vómitos y dificultad para tragar."
+      },
+      "care": {
+        "light": "Indirecta y brillante; sin sol directo fuerte.",
+        "water": "Tierra apenas húmeda; nunca encharcada.",
+        "temperature": "Cálido; en invierno puede dormirse.",
+        "humidity": "Alta."
+      },
+      "usedParts": "Ninguna. Es ornamental.",
+      "precautions": ["Usa guantes al trasplantar.", "Fuera del alcance de mascotas."],
+      "carePlanTemplate": [
+        { "type": "riego", "everyDaysBySeason": { "primavera": 4, "verano": 3, "otono": 6, "invierno": 8 }, "note": "Riega si está seca a 3 cm" },
+        { "type": "rotar", "everyDaysBySeason": { "primavera": 7, "verano": 7, "otono": 7, "invierno": 7 }, "note": "Gírala hacia la luz", "onlyInterior": true }
+      ],
+      "verified": false,
+      "sources": []
+    }
+  ]
+}

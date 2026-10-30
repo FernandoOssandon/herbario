@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nueva planta · resumen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1260px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 16px 4px; display: flex; align-items: center; gap: 12px">
+    <a href="Jardin.dc.html" aria-label="Cerrar" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+    </a>
+    <span style="font-size: 18px; font-weight: 800">Planta creada</span>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; gap: 14px; align-items: center">
+      <div role="img" aria-label="Foto del poleo" style="width: 88px; height: 88px; border-radius: 18px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"></path><path d="M12 9c-4 0-6-2.5-6-6 4 0 6 2.5 6 6zM12 9c4 0 6-2.5 6-6-4 0-6 2.5-6 6z"></path><path d="M12 15c-3 0-5-2-5-4.5 3 0 5 2 5 4.5zM12 15c3 0 5-2 5-4.5-3 0-5 2-5 4.5z"></path></svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 3px">
+        <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 26px; font-weight: 400; line-height: 1.15">Poleo del balcón</h1>
+        <span style="font-size: 15px; font-weight: 700; color: {{t.muted}}"><em>Mentha pulegium</em> · Balcón</span>
+      </div>
+    </div>
+
+    <section role="alert" aria-labelledby="tox-t" style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 20px; background: {{t.redBg}}; color: {{t.redInk}}; border: 2px solid {{t.redLine}}">
+      <div style="display: flex; gap: 10px; align-items: flex-start">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 4 21 19.5H3z"></path><path d="M12 10v4M12 17v.5"></path></svg>
+        <h2 id="tox-t" style="margin: 0; font-size: 18px; font-weight: 800; line-height: 1.3">Planta tóxica: déjala fuera del alcance de mascotas y niños</h2>
+      </div>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap">
+        <dc-import name="ToxicityBadge" nivel="toxica" para="mascotas" tam="md" dark="{{ dark }}" hint-size="170px,32px"></dc-import>
+        <dc-import name="ToxicityBadge" nivel="precaucion" para="personas" tam="md" dark="{{ dark }}" hint-size="190px,32px"></dc-import>
+      </div>
+      <p style="margin: 0; font-size: 15px; font-weight: 700; line-height: 1.45; color: {{t.ink}}">Su aceite esencial es muy tóxico y la infusión no es segura en el embarazo. Antes de usarla en una preparación, lee su ficha completa.</p>
+    </section>
+
+    <section aria-labelledby="plan-n" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="plan-n" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Su plan de cuidados</h2>
+      <p style="margin: 0; font-size: 14px; font-weight: 600; color: {{t.muted}}">Armado para un poleo en balcón, en primavera. Puedes editarlo después.</p>
+      <div style="background: {{t.card}}; border: 1.5px solid {{t.line}}; border-radius: 20px; overflow: hidden">
+        <sc-for list="{{ plan }}" as="c" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 14px; border-bottom: 1px solid {{t.line}}">
+            <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+              <sc-if value="{{ c.riego }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+              <sc-if value="{{ c.poda }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.5"></circle><circle cx="6" cy="17" r="2.5"></circle><path d="M8.2 8.3 20 18M8.2 15.7 20 6"></path></svg></sc-if>
+              <sc-if value="{{ c.abono }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"></path><path d="M5 19 13 11"></path></svg></sc-if>
+              <sc-if value="{{ c.plagas }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="m15 15 5 5"></path></svg></sc-if>
+            </span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 16px; font-weight: 800">{{ c.titulo }}</span>
+              <span style="font-size: 14px; font-weight: 600; line-height: 1.35; color: {{t.muted}}">{{ c.detalle }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <dc-import name="SafetyNotice" contexto="preparacion" dark="{{ dark }}" hint-size="100%,300px"></dc-import>
+  </main>
+
+  <footer style="padding: 14px 16px 34px; display: flex; flex-direction: column; gap: 10px; background: {{t.bg}}">
+    <a href="DetallePlanta.dc.html" style="min-height: 56px; border-radius: 28px; background: {{t.leaf}}; color: {{t.onLeaf}}; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Ver mi planta</a>
+    <a href="NuevaFoto.dc.html" style="min-height: 52px; border-radius: 26px; border: 1.5px solid {{t.line}}; color: {{t.ink}}; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Agregar otra planta</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1260}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', onLeaf: '#FFFFFF', leafSoft: '#DCEAD2', leafInk: '#1F421D', redInk: '#9E1A14', redBg: '#FADCD7', redLine: '#C7372E', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', onLeaf: '#0E1A0B', leafSoft: '#2A3D24', leafInk: '#C4EBB6', redInk: '#FFA095', redBg: '#42160F', redLine: '#F07468', phBg: '#26331F', phInk: '#A9C99C' };
+    const mk = (k, titulo, detalle) => ({ riego: k === 'riego', poda: k === 'poda', abono: k === 'abono', plagas: k === 'plagas', titulo, detalle });
+    return {
+      dark, t: dark ? D : L,
+      plan: [
+        mk('riego', 'Revisar riego cada 2 días', 'En balcón se seca rápido; riega si está seca a 2 cm'),
+        mk('poda', 'Despuntar cada 3 semanas', 'Para que se ponga tupido y no florezca tan pronto'),
+        mk('abono', 'Abonar cada 4 semanas', 'Abono orgánico suave, de primavera a verano'),
+        mk('plagas', 'Revisar plagas cada semana', 'Mira el revés de las hojas: pulgones y arañita roja')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

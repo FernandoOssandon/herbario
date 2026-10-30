@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ficha de especie · Cuna de Moisés</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1800px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: {{t.bg}}; color: {{t.ink}}">
+
+  <header style="padding: 52px 16px 4px; display: flex; align-items: center; gap: 12px">
+    <a href="DetallePlanta.dc.html" aria-label="Volver" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; flex: none">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Herbario · Ficha de especie</span>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; gap: 14px; align-items: flex-start">
+      <div aria-hidden="true" style="width: 96px; height: 120px; border-radius: 16px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"></path><path d="M12 12c-1.5-3-1.5-6.5 0-9.5 1.5 3 1.5 6.5 0 9.5z"></path><path d="M12 12.5V9"></path><path d="M10 22c-4-1-6-5-5-10 3 2 5 5 5 10zM14 22c4-1 6-5 5-10-3 2-5 5-5 10z"></path></svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 30px; font-weight: 400; line-height: 1.1">Cuna de Moisés</h1>
+        <span style="font-size: 17px; font-weight: 700; font-style: italic">Spathiphyllum wallisii</span>
+        <span style="font-size: 15px; font-weight: 700; color: {{t.muted}}">Familia Araceae · América tropical</span>
+        <span style="font-size: 14px; font-weight: 600; color: {{t.muted}}">También: espatifilo, lirio de la paz</span>
+      </div>
+    </div>
+
+    <section aria-labelledby="fx-tox" style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 20px; background: {{t.card}}; border: 2px solid {{t.redLine}}">
+      <h2 id="fx-tox" style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.redInk}}">Toxicidad</h2>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid {{t.line}}">
+        <div style="display: flex; align-items: center; gap: 8px"><span style="width: 84px; font-size: 15px; font-weight: 800">Personas</span><dc-import name="ToxicityBadge" nivel="toxica" tam="md" dark="{{ dark }}" hint-size="90px,32px"></dc-import></div>
+        <p style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">Cristales de oxalato de calcio: si se mastica, irrita boca y garganta. La savia puede irritar la piel.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; align-items: center; gap: 8px"><span style="width: 84px; font-size: 15px; font-weight: 800">Mascotas</span><dc-import name="ToxicityBadge" nivel="toxica" tam="md" dark="{{ dark }}" hint-size="90px,32px"></dc-import></div>
+        <p style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; color: {{t.muted}}">En gatos y perros: babeo, vómitos y dificultad para tragar.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="fx-cuid" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="fx-cuid" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Cuidados base</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{ cuidados }}" as="c" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px; border-radius: 18px; background: {{t.card}}; border: 1.5px solid {{t.line}}">
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; color: {{t.leaf}}">
+              <sc-if value="{{ c.luz }}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"></path></svg></sc-if>
+              <sc-if value="{{ c.riego }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></sc-if>
+              <sc-if value="{{ c.temp }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.5V5a2 2 0 0 1 4 0v9.5a4 4 0 1 1-4 0z"></path></svg></sc-if>
+              <sc-if value="{{ c.hum }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-8 5.5 5.5 0 0 0-10.6 1.5A3.3 3.3 0 0 0 7 18z"></path></svg></sc-if>
+              {{ c.titulo }}
+            </span>
+            <span style="font-size: 14px; font-weight: 600; line-height: 1.4">{{ c.texto }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-labelledby="fx-partes" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="fx-partes" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Partes que se usan</h2>
+      <p style="margin: 0; padding: 12px 14px; border-radius: 16px; background: {{t.neutralBg}}; font-size: 15px; font-weight: 700; line-height: 1.45">Ninguna. Es solo ornamental: no tiene usos culinarios ni medicinales seguros.</p>
+    </section>
+
+    <section aria-labelledby="fx-prec" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="fx-prec" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Precauciones</h2>
+      <ul style="margin: 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; font-weight: 600; line-height: 1.45">
+        <li>Lávate las manos después de podar o trasplantar.</li>
+        <li>Déjala en altura, lejos de gatos y perros que mordisquean hojas.</li>
+        <li>Bota las hojas cortadas donde las mascotas no lleguen.</li>
+      </ul>
+    </section>
+
+    <dc-import name="SafetyNotice" contexto="planta" dark="{{ dark }}" hint-size="100%,300px"></dc-import>
+
+    <section aria-labelledby="fx-mis" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="fx-mis" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-size: 22px; font-weight: 400">Mis plantas de esta especie</h2>
+      <a href="DetallePlanta.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 18px; background: {{t.card}}; border: 1.5px solid {{t.line}}; text-decoration: none; color: {{t.ink}}">
+        <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 14px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"></path><path d="M12 11c-3-1-5-4-4-8 3 1 5 4 4 8z"></path><path d="M12 15c2-2 5-2.5 7-1-1.5 2.5-4.5 3-7 1z"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 17px; font-weight: 800">Cuna de Moisés</span>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 14px; font-weight: 700; color: {{t.muted}}">Living ·<dc-import name="Chip" tipo="estado" estado="recuperacion" dark="{{ dark }}" hint-size="150px,28px"></dc-import></span>
+        </span>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"></path></svg>
+      </a>
+    </section>
+
+    <section aria-labelledby="fx-fuentes" style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 8px">
+      <h2 id="fx-fuentes" style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">Fuentes</h2>
+      <p style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.45; color: {{t.muted}}">[Fuente por definir] · Cada ficha guarda sus fuentes: así el libro podrá citarlas.</p>
+    </section>
+  </main>
+
+  <dc-import name="NavBar" activa="herbario" dark="{{ dark }}" hint-size="100%,88px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leaf: '#2C5A2A', redInk: '#9E1A14', redLine: '#C7372E', neutralBg: '#ECE7DB', phBg: '#DCE6D0', phInk: '#3E5A36' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leaf: '#A3D693', redInk: '#FFA095', redLine: '#F07468', neutralBg: '#262B22', phBg: '#26331F', phInk: '#A9C99C' };
+    const mk = (k, titulo, texto) => ({ luz: k === 'luz', riego: k === 'riego', temp: k === 'temp', hum: k === 'hum', titulo, texto });
+    return {
+      dark, t: dark ? D : L,
+      cuidados: [
+        mk('luz', 'Luz', 'Indirecta y brillante. Tolera poca luz, pero florece menos.'),
+        mk('riego', 'Riego', 'Tierra apenas húmeda. Si se desmaya, tiene sed.'),
+        mk('temp', 'Temperatura', 'Interior templado. Sufre bajo los 12 °C.'),
+        mk('hum', 'Humedad', 'Media a alta. Lejos de estufas.')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

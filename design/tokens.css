@@ -1,0 +1,210 @@
+/*
+ * Herbario v0.1 — tokens de diseño (dirección B «Pleno sol»)
+ * Fuente: lienzo de diseño «Herbario», artboards Estilos y componentes.
+ * Todos los pares de texto cumplen WCAG AA; los principales superan 7:1.
+ * Rojo y ámbar: SOLO toxicidad y tareas atrasadas.
+ *
+ * Uso: importar una vez en src/main.tsx. El tema se controla con
+ * data-theme="light" | "dark" en <html>; sin atributo sigue al sistema.
+ */
+
+:root {
+  /* — Base — */
+  --color-bg: #F7F4EC;            /* fondo de pantalla (crema) */
+  --color-surface: #FFFFFF;       /* tarjetas, barra inferior, hojas */
+  --color-line: #DCD3C0;          /* bordes y divisores (decorativo) */
+  --color-ink: #121610;           /* texto principal · 16.6:1 sobre bg */
+  --color-ink-2: #4A5244;         /* texto secundario · 7.4:1 sobre bg */
+  --color-neutral-bg: #ECE7DB;    /* fondos neutros, etiquetas */
+  --color-scrim: rgba(18, 22, 16, 0.55);
+
+  /* — Marca — */
+  --color-leaf: #2C5A2A;          /* primario · 8.1:1 con blanco */
+  --color-on-leaf: #FFFFFF;
+  --color-leaf-soft: #DCEAD2;
+  --color-leaf-ink: #1F421D;      /* texto sobre leaf-soft · 9:1 */
+  --color-terra: #94431F;         /* secundario, botón «+» · 6.8:1 */
+  --color-on-terra: #FFFFFF;
+  --color-terra-soft: #F5DFD2;
+  --color-terra-ink: #7E3818;     /* texto sobre terra-soft · 6.6:1 */
+
+  /* — Reservados: toxicidad y atrasos — */
+  --color-amber-ink: #6E4600;     /* atrasada / precaución · 6.9:1 */
+  --color-amber-bg: #FCE9BE;
+  --color-amber-line: #B07A06;    /* borde tarjeta atrasada · 3.7:1 */
+  --color-red-ink: #9E1A14;       /* tóxica · 6.2:1 */
+  --color-red-bg: #FADCD7;
+  --color-red-line: #C7372E;
+
+  /* — Estado «en observación» y avisos didácticos — */
+  --color-blue-ink: #234E6B;
+  --color-blue-bg: #DCE9F2;
+
+  /* — Placeholders de foto — */
+  --color-photo-bg: #DCE6D0;
+  --color-photo-ink: #3E5A36;
+
+  /* — Chips de estado de planta (fondo / texto / punto) — */
+  --status-activa-bg: #DCEAD2;      --status-activa-ink: #1F421D;      --status-activa-dot: #2C5A2A;
+  --status-observacion-bg: #DCE9F2; --status-observacion-ink: #234E6B; --status-observacion-dot: #2F6A91;
+  --status-recuperacion-bg: #F5DFD2;--status-recuperacion-ink: #7E3818;--status-recuperacion-dot: #94431F;
+  --status-plantin-bg: #E4EEDD;     --status-plantin-ink: #2C4A22;     --status-plantin-dot: #6E9A57;
+  --status-perdida-bg: #ECE7DB;     --status-perdida-ink: #4A5244;     --status-perdida-dot: #7C7A70;
+
+  /* — Toxicidad «desconocida» — */
+  --tox-unknown-line: #9A9483;
+
+  /* — Estaciones (hemisferio sur) — fondo / texto — */
+  --season-primavera-bg: #2C5A2A; --season-primavera-fg: #FFFFFF;  /* sep–nov */
+  --season-verano-bg: #94431F;    --season-verano-fg: #FFFFFF;     /* dic–feb */
+  --season-otono-bg: #5E4423;     --season-otono-fg: #FFF8EC;      /* mar–may */
+  --season-invierno-bg: #2E4A52;  --season-invierno-fg: #F2F7F8;   /* jun–ago */
+
+  /* — Tipografía — */
+  --font-display: 'Young Serif', Georgia, serif;
+  --font-ui: 'Nunito Variable', 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  /* Escala en rem (1rem = tamaño de texto del sistema). Ver HANDOFF §5.3 */
+  --text-display: 2.125rem;   /* 34px · Young Serif · lh 1.1 */
+  --text-title: 1.625rem;     /* 26px · Young Serif · lh 1.15 */
+  --text-section: 1.375rem;   /* 22px · Young Serif */
+  --text-banner: 1.3125rem;   /* 21px · Young Serif · lh 1.2 */
+  --text-strong: 1.125rem;    /* 18px · Nunito 800 */
+  --text-body: 1rem;          /* 16px · Nunito 600 · lh 1.45 */
+  --text-secondary: 0.9375rem;/* 15px · Nunito 700 */
+  --text-small: 0.875rem;     /* 14px · Nunito 600–700 */
+  --text-label: 0.8125rem;    /* 13px · Nunito 800 · MAYÚSCULAS · tracking 0.06–0.08em */
+
+  /* — Espaciado (base 4) — */
+  --space-1: 4px;   /* ícono ↔ texto */
+  --space-2: 8px;   /* entre chips */
+  --space-3: 12px;  /* entre tarjetas */
+  --space-4: 16px;  /* margen lateral de pantalla */
+  --space-6: 24px;  /* entre secciones */
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* — Forma — */
+  --radius-chip: 10px;
+  --radius-photo: 14px;
+  --radius-field: 16px;
+  --radius-card: 20px;
+  --radius-banner: 22px;
+  --radius-sheet: 28px;
+  --radius-pill: 999px;
+  --radius-fab: 22px;
+
+  /* — Tamaños táctiles — */
+  --tap-min: 44px;       /* mínimo absoluto */
+  --tap-field: 52px;     /* inputs, filas */
+  --tap-primary: 56px;   /* botón principal y acción de tarea */
+  --tap-fab: 64px;       /* botón «+» */
+
+  /* — Elevación (solo FAB, toasts y hojas) — */
+  --shadow-fab: 0 8px 20px rgba(60, 25, 10, 0.30);
+  --shadow-toast: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  /* — Movimiento — */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-sheet: 240ms;
+
+  color-scheme: light;
+}
+
+/* ===== Modo oscuro ===== */
+:root[data-theme="dark"] {
+  --color-bg: #0E110D;
+  --color-surface: #1A1F17;
+  --color-line: #343D2E;
+  --color-ink: #F5F2E9;
+  --color-ink-2: #B4BCAA;
+  --color-neutral-bg: #262B22;
+  --color-scrim: rgba(0, 0, 0, 0.62);
+  --color-leaf: #A3D693;
+  --color-on-leaf: #0E1A0B;
+  --color-leaf-soft: #2A3D24;
+  --color-leaf-ink: #C4EBB6;
+  --color-terra: #EE9B70;
+  --color-on-terra: #1E0E05;
+  --color-terra-soft: #3E2618;
+  --color-terra-ink: #F4B490;
+  --color-amber-ink: #FFC85C;
+  --color-amber-bg: #3B2B08;
+  --color-amber-line: #E0A21E;
+  --color-red-ink: #FFA095;
+  --color-red-bg: #42160F;
+  --color-red-line: #F07468;
+  --color-blue-ink: #9CCBEA;
+  --color-blue-bg: #182C3A;
+  --color-photo-bg: #26331F;
+  --color-photo-ink: #A9C99C;
+  --status-activa-bg: #2A3D24;      --status-activa-ink: #C4EBB6;      --status-activa-dot: #A3D693;
+  --status-observacion-bg: #182C3A; --status-observacion-ink: #9CCBEA; --status-observacion-dot: #6FB2DE;
+  --status-recuperacion-bg: #3E2618;--status-recuperacion-ink: #F4B490;--status-recuperacion-dot: #EE9B70;
+  --status-plantin-bg: #24341E;     --status-plantin-ink: #BFE0AE;     --status-plantin-dot: #8FC27A;
+  --status-perdida-bg: #262B22;     --status-perdida-ink: #B4BCAA;     --status-perdida-dot: #8A8F82;
+  --tox-unknown-line: #6B7362;
+  --season-primavera-bg: #A3D693; --season-primavera-fg: #0E1A0B;
+  --season-verano-bg: #EE9B70;    --season-verano-fg: #1E0E05;
+  --season-otono-bg: #D9B98A;     --season-otono-fg: #1E1408;
+  --season-invierno-bg: #9CC5CF;  --season-invierno-fg: #0B1B1F;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0E110D;
+    --color-surface: #1A1F17;
+    --color-line: #343D2E;
+    --color-ink: #F5F2E9;
+    --color-ink-2: #B4BCAA;
+    --color-neutral-bg: #262B22;
+    --color-scrim: rgba(0, 0, 0, 0.62);
+    --color-leaf: #A3D693;
+    --color-on-leaf: #0E1A0B;
+    --color-leaf-soft: #2A3D24;
+    --color-leaf-ink: #C4EBB6;
+    --color-terra: #EE9B70;
+    --color-on-terra: #1E0E05;
+    --color-terra-soft: #3E2618;
+    --color-terra-ink: #F4B490;
+    --color-amber-ink: #FFC85C;
+    --color-amber-bg: #3B2B08;
+    --color-amber-line: #E0A21E;
+    --color-red-ink: #FFA095;
+    --color-red-bg: #42160F;
+    --color-red-line: #F07468;
+    --color-blue-ink: #9CCBEA;
+    --color-blue-bg: #182C3A;
+    --color-photo-bg: #26331F;
+    --color-photo-ink: #A9C99C;
+    --status-activa-bg: #2A3D24;      --status-activa-ink: #C4EBB6;      --status-activa-dot: #A3D693;
+    --status-observacion-bg: #182C3A; --status-observacion-ink: #9CCBEA; --status-observacion-dot: #6FB2DE;
+    --status-recuperacion-bg: #3E2618;--status-recuperacion-ink: #F4B490;--status-recuperacion-dot: #EE9B70;
+    --status-plantin-bg: #24341E;     --status-plantin-ink: #BFE0AE;     --status-plantin-dot: #8FC27A;
+    --status-perdida-bg: #262B22;     --status-perdida-ink: #B4BCAA;     --status-perdida-dot: #8A8F82;
+    --tox-unknown-line: #6B7362;
+    --season-primavera-bg: #A3D693; --season-primavera-fg: #0E1A0B;
+    --season-verano-bg: #EE9B70;    --season-verano-fg: #1E0E05;
+    --season-otono-bg: #D9B98A;     --season-otono-fg: #1E1408;
+    --season-invierno-bg: #9CC5CF;  --season-invierno-fg: #0B1B1F;
+    color-scheme: dark;
+  }
+}
+
+/* ===== Base ===== */
+/* Respeta Dynamic Type en iOS: el tamaño base viene del sistema. */
+html { font: -apple-system-body; }
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible { outline: 3px solid var(--color-leaf); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

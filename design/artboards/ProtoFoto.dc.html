@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Prototipo · Foto rápida</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; color: {{t.ink}}; background: {{t.bg}}">
+
+  <div style="position: absolute; inset: 0; pointer-events: none">
+    <dc-import name="Hoy" dark="{{ dark }}" hint-size="390px,844px"></dc-import>
+  </div>
+
+  <sc-if value="{{ showFab }}" hint-placeholder-val="{{ true }}">
+    <button aria-label="Registro rápido" onClick="{{ openMenu }}" style="position: absolute; right: 18px; bottom: 108px; width: 64px; height: 64px; border-radius: 22px; border: 0; padding: 0; background: {{t.terra}}; color: {{t.onTerra}}; box-shadow: 0 8px 20px rgba(60, 25, 10, 0.3); display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+    </button>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 184px; display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 20px; background: {{t.ink}}; color: {{t.bg}}; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25)">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 12px; background: {{t.phBg}}; color: {{t.phInk}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10l-1.3 6H8.3z"></path><path d="M12 15V9"></path><path d="M12 10c0-3.2-2.2-5.2-5.5-5.2 0 3.2 2.2 5.2 5.5 5.2z"></path></svg></span>
+        <span style="flex: 1; font-size: 15px; font-weight: 700; line-height: 1.35">{{ toast }}</span>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <a href="EntradaEditor.dc.html" style="flex: 1; min-height: 44px; border-radius: 22px; background: {{t.bg}}; color: {{t.ink}}; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Agregar nota</a>
+        <button onClick="{{ reset }}" style="flex: 1; min-height: 44px; border-radius: 22px; border: 1.5px solid {{t.bg}}; background: transparent; color: {{t.bg}}; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer">Listo</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isMenu }}" hint-placeholder-val="{{ false }}">
+    <button aria-label="Cerrar" onClick="{{ reset }}" style="position: absolute; inset: 0; border: 0; padding: 0; background: {{t.scrim}}; cursor: pointer"></button>
+    <section role="dialog" aria-modal="true" aria-labelledby="pf-t" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; background: {{t.card}}; border-radius: 28px 28px 0 0; padding: 10px 16px 120px; display: flex; flex-direction: column; gap: 10px">
+      <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: {{t.line}}"></span>
+      <h2 id="pf-t" style="margin: 4px; font-family: 'Young Serif', Georgia, serif; font-size: 24px; font-weight: 400">Registro rápido</h2>
+      <button onClick="{{ openCam }}" style="display: flex; align-items: center; gap: 14px; min-height: 80px; padding: 10px 14px; border: 0; border-radius: 20px; background: {{t.terraSoft}}; color: {{t.terraInk}}; font-family: inherit; text-align: left; cursor: pointer">
+        <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 16px; background: {{t.terra}}; color: {{t.onTerra}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 800">Foto rápida</span><span style="font-size: 14px; font-weight: 700">Dispara y listo. Va al diario de la planta.</span></span>
+      </button>
+      <a href="EntradaEditor.dc.html" style="display: flex; align-items: center; gap: 14px; min-height: 80px; padding: 10px 14px; box-sizing: border-box; border-radius: 20px; border: 1.5px solid {{t.line}}; color: {{t.ink}}; text-decoration: none">
+        <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 16px; background: {{t.neutralBg}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4L16 5l3 3L9 18z"></path><path d="M14 7l3 3"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 800">Nota rápida</span><span style="font-size: 14px; font-weight: 700; color: {{t.muted}}">Una línea ahora; la ordenas después.</span></span>
+      </a>
+      <a href="ProtoRiego.dc.html" style="display: flex; align-items: center; gap: 14px; min-height: 80px; padding: 10px 14px; box-sizing: border-box; border-radius: 20px; border: 1.5px solid {{t.line}}; color: {{t.ink}}; text-decoration: none">
+        <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 16px; background: {{t.leafSoft}}; color: {{t.leafInk}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-3 4-6 7.2-6 10.5a6 6 0 0 0 12 0c0-3.3-3-6.5-6-10.5z"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 800">Regué</span><span style="font-size: 14px; font-weight: 700; color: {{t.muted}}">Marca qué regaste y cómo estaba la tierra.</span></span>
+      </a>
+    </section>
+    <button aria-label="Cerrar registro rápido" onClick="{{ reset }}" style="position: absolute; right: 18px; bottom: 30px; width: 64px; height: 64px; border-radius: 22px; border: 0; padding: 0; background: {{t.ink}}; color: {{t.card}}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+    </button>
+  </sc-if>
+
+  <sc-if value="{{ isCam }}" hint-placeholder-val="{{ false }}">
+    <section aria-label="Cámara · Foto rápida" style="position: absolute; inset: 0; background: #0B0D0A; color: #F5F2E9; display: flex; flex-direction: column">
+      <div style="padding: 52px 16px 10px; display: flex; align-items: center; gap: 12px">
+        <button aria-label="Cerrar cámara" onClick="{{ reset }}" style="width: 48px; height: 48px; border-radius: 50%; border: 0; padding: 0; background: rgba(255, 255, 255, 0.14); color: #F5F2E9; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+        <span style="flex: 1; font-size: 17px; font-weight: 800">Foto rápida</span>
+      </div>
+      <div role="img" aria-label="Visor de la cámara" style="flex: 1; margin: 0 12px; border-radius: 22px; background: #1E2A1C; color: #6F8F66; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden">
+        <span aria-hidden="true" style="position: absolute; left: 33.3%; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.18)"></span>
+        <span aria-hidden="true" style="position: absolute; left: 66.6%; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.18)"></span>
+        <span aria-hidden="true" style="position: absolute; top: 33.3%; left: 0; right: 0; height: 1px; background: rgba(255, 255, 255, 0.18)"></span>
+        <span aria-hidden="true" style="position: absolute; top: 66.6%; left: 0; right: 0; height: 1px; background: rgba(255, 255, 255, 0.18)"></span>
+        <svg aria-hidden="true" width="190" height="190" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16h10l-1.3 5H8.3z"></path><path d="M10 16c0-4-1-8-3-11M12 16V3M14 16c0-4 1-8 3-11"></path><path d="M7 7l-1.5-.5M7.6 9.5 6 9.3M12 5h-1.5M12 8h1.5M12 11h-1.5M17 7l1.5-.5M16.4 9.5l1.6-.2"></path></svg>
+        <span style="position: absolute; left: 12px; top: 12px; padding: 4px 10px; border-radius: 10px; background: rgba(0, 0, 0, 0.55); font-size: 13px; font-weight: 800">Mismo ángulo que la última vez</span>
+      </div>
+      <div style="padding: 14px 0 0; display: flex; flex-direction: column; gap: 8px">
+        <span style="padding: 0 16px; font-size: 14px; font-weight: 800; color: #C9D1C0">¿De qué planta? · sugerida por tu última foto</span>
+        <div role="group" aria-label="Planta" style="display: flex; gap: 8px; padding: 0 16px; overflow: hidden">
+          <sc-for list="{{ plantas }}" as="pl" hint-placeholder-count="4">
+            <button aria-pressed="{{ pl.pressed }}" onClick="{{ pl.pick }}" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 22px; border: {{pl.border}}; background: {{pl.bg}}; color: {{pl.ink}}; font-family: inherit; font-size: 15px; font-weight: 800; white-space: nowrap; cursor: pointer">{{ pl.nombre }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding: 18px 28px 34px; display: flex; align-items: center; justify-content: space-between">
+        <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 14px; background: #2A3526; border: 2px solid rgba(255, 255, 255, 0.3)"></span>
+        <button aria-label="{{ shutterLabel }}" onClick="{{ shoot }}" style="width: 80px; height: 80px; border-radius: 50%; border: 5px solid #F5F2E9; padding: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <span aria-hidden="true" style="width: 62px; height: 62px; border-radius: 50%; background: #F5F2E9"></span>
+        </button>
+        <span aria-hidden="true" style="width: 52px; height: 52px"></span>
+      </div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { screen: 'hoy', planta: 'Tomillo', toast: null };
+  }
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    const L = { bg: '#F7F4EC', card: '#FFFFFF', line: '#DCD3C0', ink: '#121610', muted: '#4A5244', leafSoft: '#DCEAD2', leafInk: '#1F421D', terra: '#94431F', onTerra: '#FFFFFF', terraSoft: '#F5DFD2', terraInk: '#7E3818', neutralBg: '#ECE7DB', phBg: '#DCE6D0', phInk: '#3E5A36', scrim: 'rgba(18, 22, 16, 0.55)' };
+    const D = { bg: '#0E110D', card: '#1A1F17', line: '#343D2E', ink: '#F5F2E9', muted: '#B4BCAA', leafSoft: '#2A3D24', leafInk: '#C4EBB6', terra: '#EE9B70', onTerra: '#1E0E05', terraSoft: '#3E2618', terraInk: '#F4B490', neutralBg: '#262B22', phBg: '#26331F', phInk: '#A9C99C', scrim: 'rgba(0, 0, 0, 0.62)' };
+    const t = dark ? D : L;
+    const st = this.state || {};
+    const screen = st.screen || 'hoy';
+    const planta = st.planta || 'Tomillo';
+    const nombres = ['Tomillo', 'Menta', 'Albahaca', 'Tomate cherry', 'Perejil'];
+    return {
+      dark, t,
+      showFab: screen === 'hoy',
+      isMenu: screen === 'menu',
+      isCam: screen === 'camara',
+      toast: screen === 'hoy' && st.toast ? st.toast : false,
+      plantas: nombres.map((n) => {
+        const on = n === planta;
+        return {
+          nombre: n, pressed: on ? 'true' : 'false',
+          border: on ? '2px solid #A3D693' : '1.5px solid rgba(255, 255, 255, 0.35)',
+          bg: on ? '#A3D693' : 'transparent',
+          ink: on ? '#0E1A0B' : '#F5F2E9',
+          pick: () => this.setState({ planta: n })
+        };
+      }),
+      shutterLabel: 'Tomar foto de ' + planta,
+      openMenu: () => this.setState({ screen: 'menu', toast: null }),
+      openCam: () => this.setState({ screen: 'camara' }),
+      shoot: () => this.setState({ screen: 'hoy', toast: 'Foto guardada en el diario de ' + planta + '.' }),
+      reset: () => this.setState({ screen: 'hoy', toast: null, planta: 'Tomillo' })
+    };
+  }
+}
+</script>
+</body>
+</html>
